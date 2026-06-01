@@ -206,6 +206,12 @@
   position: fixed; top: 0; left: 0; width: 100%; height: 100%;
   pointer-events: none; z-index: 0; display: none;
 }
+
+/* 过渡特效 Canvas */
+#transitionCanvas {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none; z-index: 1000; display: none;
+}
 .yin .container { max-width: 640px; padding: 0 40px; position: relative; z-index: 1; }
 .yin header { padding: 60px 0 0; text-align: center; }
 .yin header .seal {
@@ -410,6 +416,7 @@
 
 <!-- ══════ 🌙 阴面 ══════ -->
 <canvas id="inkCanvas"></canvas>
+<canvas id="transitionCanvas"></canvas>
 <div class="page yin season-spring" id="yinPage">
   <div class="container">
     <header>
@@ -731,6 +738,135 @@ function drawDecoratives(season) {
   decoratives.forEach(p => eff.draw(p));
 }
 
+// ── 阴阳切换过渡特效 ──
+const tCtx = document.getElementById('transitionCanvas').getContext('2d');
+let tCanvas = document.getElementById('transitionCanvas');
+
+function resizeT() {
+  tCanvas.width = window.innerWidth;
+  tCanvas.height = window.innerHeight;
+}
+resizeT();
+window.addEventListener('resize', resizeT);
+
+// 墨染特效：阳→阴
+function inkTransition(fromMode, callback) {
+  const w = tCanvas.width, h = tCanvas.height;
+  // 从太极按钮位置开始
+  const btnRect = taijiBtn.getBoundingClientRect();
+  const ox = btnRect.left + btnRect.width / 2;
+  const oy = btnRect.top + btnRect.height / 2;
+  const maxR = Math.sqrt(w * w + h * h) * 0.9;
+
+  // 多个墨点偏移
+  const drops = [];
+  const numDrops = 8;
+  for (let i = 0; i < numDrops; i++) {
+    drops.push({
+      ox: ox + (Math.random() - 0.5) * 60,
+      oy: oy + (Math.random() - 0.5) * 60,
+      delay: i * 30,
+      r: 0,
+      speed: maxR / 300 * (0.8 + Math.random() * 0.4)
+    });
+  }
+
+  const inkColor = fromMode === 'yang'
+    ? { r: 28, g: 26, b: 22 }  // 阴面底色
+    : { r: 245, g: 245, b: 240 }; // 阳面底色
+  let elapsed = 0;
+  const duration = 500;
+
+  function frame() {
+    elapsed += 16;
+    const progress = Math.min(elapsed / duration, 1);
+    tCtx.clearRect(0, 0, w, h);
+
+    drops.forEach(d => {
+      const localT = Math.max(0, elapsed - d.delay);
+      if (localT <= 0) return;
+      const p = Math.min(localT / duration, 1);
+      d.r = d.speed * localT;
+      const ease = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+      const alpha = (1 - ease * 0.15) * 0.85;
+      const grad = tCtx.createRadialGradient(d.ox, d.oy, 0, d.ox, d.oy, d.r);
+      grad.addColorStop(0, `rgba(${inkColor.r},${inkColor.g},${inkColor.b},${alpha})`);
+      grad.addColorStop(0.6, `rgba(${inkColor.r},${inkColor.g},${inkColor.b},${alpha * 0.7})`);
+      grad.addColorStop(1, `rgba(${inkColor.r},${inkColor.g},${inkColor.b},0)`);
+      tCtx.beginPath();
+      tCtx.arc(d.ox, d.oy, d.r, 0, Math.PI * 2);
+      tCtx.fillStyle = grad;
+      tCtx.fill();
+    });
+
+    if (progress < 1) {
+      requestAnimationFrame(frame);
+    } else {
+      // 短暂保持全黑然后消失
+      setTimeout(() => {
+        tCtx.clearRect(0, 0, w, h);
+        tCanvas.style.display = 'none';
+        callback();
+      }, 80);
+    }
+  }
+  tCanvas.style.display = 'block';
+  frame();
+}
+
+// 水波特效：阴→阳
+function rippleTransition(callback) {
+  const w = tCanvas.width, h = tCanvas.height;
+  const cx = w / 2, cy = h / 2;
+  const maxR = Math.sqrt(w * w + h * h) * 0.7;
+  let radius = 0;
+  const speed = maxR / 350;
+  const duration = 450;
+  let elapsed = 0;
+
+  function frame() {
+    elapsed += 16;
+    const progress = Math.min(elapsed / duration, 1);
+    tCtx.clearRect(0, 0, w, h);
+    radius = speed * elapsed;
+
+    // 主波纹
+    for (let i = 0; i < 3; i++) {
+      const r = radius - i * 20;
+      if (r < 0) continue;
+      const alpha = Math.max(0, 0.15 * (1 - i * 0.25) * (1 - progress));
+      tCtx.beginPath();
+      tCtx.arc(cx, cy, r, 0, Math.PI * 2);
+      tCtx.strokeStyle = `rgba(255,255,255,${alpha})`;
+      tCtx.lineWidth = 2 - i * 0.5;
+      tCtx.stroke();
+    }
+
+    // 内圈淡出（白色面纱）
+    const fillAlpha = progress * 0.3;
+    const fillGrad = tCtx.createRadialGradient(cx, cy, 0, cx, cy, radius);
+    fillGrad.addColorStop(0, `rgba(245,245,240,${fillAlpha * 0.5})`);
+    fillGrad.addColorStop(0.7, `rgba(245,245,240,${fillAlpha})`);
+    fillGrad.addColorStop(1, `rgba(245,245,240,0)`);
+    tCtx.beginPath();
+    tCtx.arc(cx, cy, radius, 0, Math.PI * 2);
+    tCtx.fillStyle = fillGrad;
+    tCtx.fill();
+
+    if (progress < 1) {
+      requestAnimationFrame(frame);
+    } else {
+      setTimeout(() => {
+        tCtx.clearRect(0, 0, w, h);
+        tCanvas.style.display = 'none';
+        callback();
+      }, 100);
+    }
+  }
+  tCanvas.style.display = 'block';
+  frame();
+}
+
 let currentSeason = 'spring';
 
 function initMist() {
@@ -827,24 +963,37 @@ langBtn.addEventListener('click', () => {
   setLang(currentLang === 'en' ? 'zh' : 'en');
 });
 
-// Yang/Yin 切换时显示/隐藏语言按钮
+// Yang/Yin 切换 — 带过渡特效
+let transitioning = false;
 taijiBtn.addEventListener('click', () => {
-  mode = mode === 'yang' ? 'yin' : 'yang';
+  if (transitioning) return;
+  transitioning = true;
   taijiBtn.classList.toggle('spin');
-  if (mode === 'yin') {
-    taijiBtn.classList.remove('yang-mode');
-    taijiBtn.classList.add('yin-mode');
-    yang.classList.remove('active'); yin.classList.add('active');
-    canvas.style.display = 'block';
-    if (mist.length === 0) {
-      initMist();
-    }
-    animateMist();
+
+  if (mode === 'yang') {
+    // 阳→阴：墨染特效
+    inkTransition('yang', () => {
+      taijiBtn.classList.remove('yang-mode');
+      taijiBtn.classList.add('yin-mode');
+      yang.classList.remove('active');
+      yin.classList.add('active');
+      canvas.style.display = 'block';
+      if (mist.length === 0) initMist();
+      animateMist();
+      mode = 'yin';
+      transitioning = false;
+    });
   } else {
-    taijiBtn.classList.remove('yin-mode');
-    taijiBtn.classList.add('yang-mode');
-    yin.classList.remove('active'); yang.classList.add('active');
-    canvas.style.display = 'none';
+    // 阴→阳：水波特效
+    rippleTransition(() => {
+      taijiBtn.classList.remove('yin-mode');
+      taijiBtn.classList.add('yang-mode');
+      yin.classList.remove('active');
+      yang.classList.add('active');
+      canvas.style.display = 'none';
+      mode = 'yang';
+      transitioning = false;
+    });
   }
 });
 </script>
