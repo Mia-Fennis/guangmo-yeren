@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>广莫野人 · 风格原型</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Noto+Serif+SC:wght@200;400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;600;700&family=ZCOOL+XiaoWei&family=Ma+Shan+Zheng&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+
+/* ── 切换按钮 ── */
+.toggle-wrap {
+  position: fixed; top: 24px; right: 24px;
+  z-index: 999;
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 500;
+  letter-spacing: 0.1em;
+}
+.toggle-wrap.yang-mode { color: #1a1a1a; }
+.toggle-wrap.yin-mode { color: #c8c3b8; }
+.switch {
+  width: 56px; height: 28px;
+  border-radius: 14px;
+  cursor: pointer; position: relative;
+  transition: all .4s;
+  border: 1.5px solid;
+}
+.switch.yang { background: #e8e8e8; border-color: #1a1a1a; }
+.switch.yin { background: #2a2824; border-color: #6b6558; }
+.switch .knob {
+  width: 22px; height: 22px; border-radius: 50%;
+  position: absolute; top: 2px;
+  transition: all .4s cubic-bezier(.68,-.55,.27,1.55);
+}
+.switch.yang .knob { left: 2px; background: #1a1a1a; }
+.switch.yin .knob { left: 30px; background: #c8c3b8; }
+
+/* ── 容器 ── */
+.page {
+  min-height: 100vh;
+  transition: all .6s;
+}
+
+/* ════════════════ ☀️ 阳面：学术极简 ════════════════ */
+.page.yang {
+  background: #f5f5f0;
+  color: #1a1a1a;
+  font-family: 'Inter', 'Noto Sans SC', sans-serif;
+}
+.yang .container {
+  max-width: 720px; margin: 0 auto;
+  padding: 80px 40px;
+}
+.yang header {
+  margin-bottom: 80px;
+  border-bottom: 1px solid #1a1a1a;
+  padding-bottom: 32px;
+}
+.yang header h1 {
+  font-size: 42px; font-weight: 300;
+  letter-spacing: -0.04em; margin-bottom: 8px;
+  font-family: 'Inter', sans-serif;
+}
+.yang header .sub {
+  font-size: 14px; color: #666;
+  font-weight: 400; letter-spacing: 0.02em;
+}
+.yang .nav {
+  display: flex; gap: 0;
+  margin-bottom: 64px;
+  border-bottom: 1px solid #ddd;
+}
+.yang .nav a {
+  padding: 12px 20px;
+  font-size: 13px; font-weight: 400;
+  color: #666; text-decoration: none;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid transparent;
+  margin-bottom: -1px;
+  transition: all .15s;
+}
+.yang .nav a:hover { color: #1a1a1a; border-bottom-color: #1a1a1a; }
+.yang .section { margin-bottom: 56px; }
+.yang .section h2 {
+  font-size: 13px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  color: #999; margin-bottom: 20px;
+}
+.yang .section p {
+  font-size: 15px; line-height: 1.8;
+  color: #333; max-width: 600px;
+}
+.yang .timeline { list-style: none; }
+.yang .timeline li {
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 14px; color: #444;
+  display: flex; gap: 24px;
+}
+.yang .timeline .yr { color: #999; min-width: 60px; font-family: 'JetBrains Mono', monospace; font-size: 12px; }
+.yang .papers { list-style: none; }
+.yang .papers li {
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 14px; color: #444;
+}
+.yang .papers .title { font-weight: 500; color: #1a1a1a; }
+.yang .papers .venue { font-size: 12px; color: #999; margin-left: 8px; }
+.yang footer {
+  margin-top: 80px; padding-top: 24px;
+  border-top: 1px solid #ddd;
+  font-size: 12px; color: #999;
+}
+
+/* ════════════════ 🌙 阴面：水墨 ════════════════ */
+.page.yin {
+  background: #1c1a16;
+  color: #c8c3b8;
+  font-family: 'Noto Serif SC', 'ZCOOL XiaoWei', serif;
+  /* 宣纸纹理 overlay */
+  position: relative;
+}
+.page.yin::before {
+  content: '';
+  position: fixed; inset: 0;
+  opacity: 0.03;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(200,195,184,0.03) 2px, rgba(200,195,184,0.03) 3px),
+    repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(200,195,184,0.02) 3px, rgba(200,195,184,0.02) 4px);
+  pointer-events: none; z-index: 0;
+}
+.yin .container {
+  max-width: 640px; margin: 0 auto;
+  padding: 100px 40px;
+  position: relative; z-index: 1;
+}
+.yin header {
+  margin-bottom: 72px;
+  text-align: center;
+}
+.yin header .seal {
+  display: inline-block;
+  border: 2px solid #8b3a3a; color: #8b3a3a;
+  padding: 4px 8px; font-size: 11px;
+  letter-spacing: 0.15em; margin-bottom: 24px;
+  font-family: 'Ma Shan Zheng', cursive;
+  transform: rotate(-2deg);
+}
+.yin header h1 {
+  font-size: 48px; font-weight: 200;
+  letter-spacing: 0.3em; margin-bottom: 16px;
+  color: #d4cfc4;
+  font-family: 'Noto Serif SC', serif;
+  writing-mode: horizontal-tb;
+}
+.yin header .sig {
+  font-size: 14px; color: #8a8476;
+  letter-spacing: 0.2em; font-weight: 300;
+}
+.yin .divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(200,195,184,0.3), transparent);
+  margin: 48px 0;
+}
+.yin .section { margin-bottom: 64px; }
+.yin .section h2 {
+  font-size: 20px; font-weight: 200;
+  letter-spacing: 0.3em; margin-bottom: 20px;
+  color: #d4cfc4;
+  /* 左侧装饰线 */
+  padding-left: 20px;
+  position: relative;
+}
+.yin .section h2::before {
+  content: '';
+  position: absolute; left: 0; top: 4px; bottom: 4px;
+  width: 2px;
+  background: linear-gradient(to bottom, rgba(139,58,58,0.6), transparent);
+}
+.yin .section p {
+  font-size: 15px; line-height: 2;
+  color: #a39e8f;
+  font-weight: 300;
+  text-indent: 2em;
+}
+.yin .section .sub {
+  font-size: 13px; color: #7a7568;
+  letter-spacing: 0.05em; margin-top: 12px;
+  text-indent: 0;
+}
+.yin .ink-list { list-style: none; }
+.yin .ink-list li {
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(200,195,184,0.08);
+  font-size: 14px; color: #a39e8f;
+  line-height: 1.8;
+}
+.yin .ink-list li:last-child { border-bottom: none; }
+.yin .ink-list .label {
+  color: #8b3a3a; font-size: 12px;
+  letter-spacing: 0.1em;
+  display: block; margin-bottom: 4px;
+}
+.yin footer {
+  margin-top: 64px; padding-top: 24px;
+  text-align: center;
+  font-size: 12px; color: #5a5548;
+  letter-spacing: 0.1em;
+}
+
+/* ── 切换动画 ── */
+.page { display: none; }
+.page.active { display: block; }
+</style>
+</head>
+<body>
+
+<div class="toggle-wrap yang-mode" id="toggleWrap">
+  <span>☀️ 阳</span>
+  <div class="switch yang" id="toggleBtn">
+    <div class="knob"></div>
+  </div>
+  <span>🌙 阴</span>
+</div>
+
+<!-- ☀️ 阳面 -->
+<div class="page yang active" id="yangPage">
+  <div class="container">
+    <header>
+      <h1>广莫野人</h1>
+      <div class="sub">Guangmo Yeren · Researcher, PhD Candidate</div>
+    </header>
+
+    <div class="nav">
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Research</a>
+      <a href="#">Publications</a>
+      <a href="#">Blog</a>
+      <a href="#">Contact</a>
+    </div>
+
+    <div class="section">
+      <h2>About</h2>
+      <p>PhD candidate in Computer Science. Research interests in computer vision, weakly supervised semantic segmentation, and representation learning. Currently at [University].</p>
+    </div>
+
+    <div class="section">
+      <h2>Timeline</h2>
+      <ul class="timeline">
+        <li><span class="yr">2022–</span> PhD in Computer Science · [University]</li>
+        <li><span class="yr">2020–22</span> M.S. in Computer Science · [University]</li>
+        <li><span class="yr">2016–20</span> B.S. in Computer Science · [University]</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Selected Publications</h2>
+      <ul class="papers">
+        <li><span class="title">[Paper Title]</span><span class="venue">CVPR 2025</span></li>
+        <li><span class="title">[Paper Title]</span><span class="venue">CVPR 2024</span></li>
+        <li><span class="title">[Paper Title]</span><span class="venue">AAAI 2024</span></li>
+      </ul>
+    </div>
+
+    <footer>
+      © Guangmo Yeren · Updated 2026
+    </footer>
+  </div>
+</div>
+
+<!-- 🌙 阴面 -->
+<div class="page yin" id="yinPage">
+  <div class="container">
+    <header>
+      <div class="seal">广 莫 之 野</div>
+      <h1>广莫野人</h1>
+      <div class="sig">— 逍遥游·庄子 —</div>
+    </header>
+
+    <div class="divider"></div>
+
+    <div class="section">
+      <h2>随笔</h2>
+      <p>今之学者，终日营营于计量之功，而不知心之放失。学问之道，不在多而在精，不在博而在约。譬如为学日益，为道日损，损之又损，以至于无为。</p>
+      <p class="sub">—— 读《庄子·知北游》有感</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section">
+      <h2>养虾纪</h2>
+      <ul class="ink-list">
+        <li><span class="label">癸卯·夏</span>新得一缸，置水草数株，虾十尾。观其游弋，悠然自得。</li>
+        <li><span class="label">癸卯·秋</span>虾渐长，脱壳数次。壳透明若琉璃，甚可爱。</li>
+      </ul>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section">
+      <h2>无用</h2>
+      <p>人皆知有用之用，而莫知无用之用也。庭中有一树，匠者不顾，故得终其天年。吾之小玩具，亦若此树。</p>
+    </div>
+
+    <footer>
+      心闲手敏 · 无往不利
+    </footer>
+  </div>
+</div>
+
+<script>
+const btn = document.getElementById('toggleBtn');
+const wrap = document.getElementById('toggleWrap');
+const yang = document.getElementById('yangPage');
+const yin = document.getElementById('yinPage');
+let isYin = false;
+
+btn.addEventListener('click', () => {
+  isYin = !isYin;
+  if (isYin) {
+    btn.className = 'switch yin';
+    btn.querySelector('.knob').className = 'knob';
+    wrap.className = 'toggle-wrap yin-mode';
+    yang.classList.remove('active');
+    yin.classList.add('active');
+  } else {
+    btn.className = 'switch yang';
+    btn.querySelector('.knob').className = 'knob';
+    wrap.className = 'toggle-wrap yang-mode';
+    yin.classList.remove('active');
+    yang.classList.add('active');
+  }
+});
+</script>
+
+</body>
+</html>
