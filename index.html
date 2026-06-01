@@ -22,6 +22,24 @@
 .taiji-toggle.yang-mode .outer-ring { stroke: #666; }
 .taiji-toggle.yin-mode .outer-ring { stroke: #8b3a3a; }
 
+/* ── 语言切换（仅阳面可见） ── */
+.lang-toggle {
+  position: fixed; top: 78px; right: 24px; z-index: 998;
+  width: 34px; height: 24px;
+  display: none;  /* 默认隐藏，yin 页隐藏 */
+  align-items: center; justify-content: center;
+  cursor: pointer; user-select: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px; font-weight: 500; letter-spacing: 0.05em;
+  color: #888; background: transparent;
+  border: 1px solid #ccc; border-radius: 12px;
+  transition: all .25s;
+  line-height: 1;
+}
+.lang-toggle.visible { display: flex; }
+.lang-toggle:hover { color: #1a1a1a; border-color: #888; }
+.lang-toggle .label { pointer-events: none; }
+
 /* ── Page base ── */
 .page { min-height: 100vh; transition: all .6s; display: none; }
 .page.active { display: block; }
@@ -172,6 +190,7 @@
 @media (max-width: 640px) {
   .container { padding: 0 20px; }
   .toggle-wrap { top: 12px; right: 12px; }
+  .lang-toggle { top: 66px; right: 12px; }
   .yang .nav-bar, .yin .nav-bar { overflow-x: auto; white-space: nowrap; }
   .yin .interest-grid { grid-template-columns: 1fr; }
   .yang #home .hero-main { font-size: 36px; }
@@ -203,6 +222,9 @@
   </svg>
 </div>
 
+<!-- 语言切换按钮（仅在阳面显示） -->
+<div class="lang-toggle" id="langToggle"><span class="label">EN</span></div>
+
 <!-- ══════ ☀️ 阳面 ══════ -->
 <div class="page yang active" id="yangPage">
   <div class="container">
@@ -210,37 +232,54 @@
       <h1>广莫野人</h1>
       <div class="sub">Guangmo Yeren</div>
       <div class="nav-bar" id="yangNav">
-        <a class="active" data-page="home">Home</a>
-        <a data-page="about">About</a>
-        <a data-page="research">Research</a>
-        <a data-page="pub">Publications</a>
-        <a data-page="blog">Blog</a>
-        <a data-page="contact">Contact</a>
+        <a class="active" data-page="home" data-en="Home" data-zh="首页">Home</a>
+        <a data-page="about" data-en="About" data-zh="关于">About</a>
+        <a data-page="research" data-en="Research" data-zh="研究">Research</a>
+        <a data-page="pub" data-en="Publications" data-zh="发表">Publications</a>
+        <a data-page="blog" data-en="Blog" data-zh="博客">Blog</a>
+        <a data-page="contact" data-en="Contact" data-zh="联系">Contact</a>
       </div>
     </header>
+    <!-- 首页 -->
     <div class="section active" id="home">
       <h2>—</h2>
-      <div class="hero-main">Computer Vision<br>WSSS Researcher</div>
-      <div class="hero-sub">PhD candidate exploring weakly supervised semantic segmentation, noise robustness, and the intersection of vision and language.</div>
-      <div class="hero-tag"><span>Weakly Supervised Learning</span><span>Semantic Segmentation</span><span>CLIP</span></div>
+      <div class="hero-main" data-en="Computer Vision<br>WSSS Researcher" data-zh="计算机视觉<br>弱监督语义分割">Computer Vision<br>WSSS Researcher</div>
+      <div class="hero-sub" data-en="PhD candidate exploring weakly supervised semantic segmentation, noise robustness, and the intersection of vision and language." data-zh="博士研究生，研究方向为弱监督语义分割、噪声鲁棒性，以及视觉与语言的交叉融合。">PhD candidate exploring weakly supervised semantic segmentation, noise robustness, and the intersection of vision and language.</div>
+      <div class="hero-tag">
+        <span data-en="Weakly Supervised Learning" data-zh="弱监督学习">Weakly Supervised Learning</span>
+        <span data-en="Semantic Segmentation" data-zh="语义分割">Semantic Segmentation</span>
+        <span data-en="CLIP" data-zh="CLIP">CLIP</span>
+      </div>
     </div>
+    <!-- 关于 -->
     <div class="section" id="about">
-      <h2>About</h2>
-      <p class="bio">PhD candidate in Computer Science. Research focuses on weakly supervised semantic segmentation with image-level labels, particularly interested in CAM refinement, noise robustness, and foundation model adaptation.</p>
+      <h2 data-en="About" data-zh="关于">About</h2>
+      <p class="bio" data-en="PhD candidate in Computer Science. Research focuses on weakly supervised semantic segmentation with image-level labels, particularly interested in CAM refinement, noise robustness, and foundation model adaptation." data-zh="计算机科学博士研究生。研究方向为基于图像级标签的弱监督语义分割，尤其关注 CAM 优化、噪声鲁棒性及基础模型适配。">PhD candidate in Computer Science. Research focuses on weakly supervised semantic segmentation with image-level labels, particularly interested in CAM refinement, noise robustness, and foundation model adaptation.</p>
       <ul class="timeline">
-        <li><span class="yr">2025–</span><span class="desc">PhD · Computer Science</span><span class="detail">[University]</span></li>
-        <li><span class="yr">2022–25</span><span class="desc">M.S. · Computer Science</span><span class="detail">[University] · Thesis: WSSS with Noise Analysis</span></li>
-        <li><span class="yr">2018–22</span><span class="desc">B.S. · Computer Science</span><span class="detail">[University]</span></li>
+        <li><span class="yr">2025–</span><span class="desc" data-en="PhD · Computer Science" data-zh="博士 · 计算机科学">PhD · Computer Science</span><span class="detail" data-en="—" data-zh="[大学]">[University]</span></li>
+        <li><span class="yr">2022–25</span><span class="desc" data-en="M.S. · Computer Science" data-zh="硕士 · 计算机科学">M.S. · Computer Science</span><span class="detail" data-en="Thesis: WSSS with Noise Analysis" data-zh="[大学] · 论文：WSSS噪声分析">[University] · Thesis: WSSS with Noise Analysis</span></li>
+        <li><span class="yr">2018–22</span><span class="desc" data-en="B.S. · Computer Science" data-zh="学士 · 计算机科学">B.S. · Computer Science</span><span class="detail" data-en="—" data-zh="[大学]">[University]</span></li>
       </ul>
     </div>
+    <!-- 研究 -->
     <div class="section" id="research">
-      <h2>Research</h2>
-      <div class="direction"><h3>01 · Weakly Supervised Semantic Segmentation</h3><p>Leveraging image-level labels to achieve pixel-level segmentation. Focus on CAM refinement, pseudo-label noise analysis, and self-supervised learning paradigms.</p></div>
-      <div class="direction"><h3>02 · Noise Robustness in WSSS</h3><p>Understanding and mitigating the impact of pseudo-label noise on segmentation performance. Exploring uncertainty estimation, adaptive filtering, and consistency regularization.</p></div>
-      <div class="direction"><h3>03 · CLIP & Foundation Models for Segmentation</h3><p>Adapting vision-language pre-trained models for dense prediction tasks. Investigating patch-text alignment and knowledge transfer without full fine-tuning.</p></div>
+      <h2 data-en="Research" data-zh="研究">Research</h2>
+      <div class="direction">
+        <h3 data-en="01 · Weakly Supervised Semantic Segmentation" data-zh="01 · 弱监督语义分割">01 · Weakly Supervised Semantic Segmentation</h3>
+        <p data-en="Leveraging image-level labels to achieve pixel-level segmentation. Focus on CAM refinement, pseudo-label noise analysis, and self-supervised learning paradigms." data-zh="利用图像级标签实现像素级分割。关注 CAM 优化、伪标签噪声分析及自监督学习范式。">Leveraging image-level labels to achieve pixel-level segmentation. Focus on CAM refinement, pseudo-label noise analysis, and self-supervised learning paradigms.</p>
+      </div>
+      <div class="direction">
+        <h3 data-en="02 · Noise Robustness in WSSS" data-zh="02 · WSSS噪声鲁棒性">02 · Noise Robustness in WSSS</h3>
+        <p data-en="Understanding and mitigating the impact of pseudo-label noise on segmentation performance. Exploring uncertainty estimation, adaptive filtering, and consistency regularization." data-zh="理解和缓解伪标签噪声对分割性能的影响。探索不确定性估计、自适应过滤和一致性正则化。">Understanding and mitigating the impact of pseudo-label noise on segmentation performance. Exploring uncertainty estimation, adaptive filtering, and consistency regularization.</p>
+      </div>
+      <div class="direction">
+        <h3 data-en="03 · CLIP & Foundation Models for Segmentation" data-zh="03 · CLIP与基础模型分割">03 · CLIP & Foundation Models for Segmentation</h3>
+        <p data-en="Adapting vision-language pre-trained models for dense prediction tasks. Investigating patch-text alignment and knowledge transfer without full fine-tuning." data-zh="将视觉-语言预训练模型适配到稠密预测任务。研究无需完全微调的块-文本对齐和知识迁移。">Adapting vision-language pre-trained models for dense prediction tasks. Investigating patch-text alignment and knowledge transfer without full fine-tuning.</p>
+      </div>
     </div>
+    <!-- 发表 -->
     <div class="section" id="pub">
-      <h2>Publications</h2>
+      <h2 data-en="Publications" data-zh="发表">Publications</h2>
       <ul class="papers">
         <li><span class="t">[Paper Title A]</span><span class="v">CVPR 2025</span></li>
         <li><span class="t">[Paper Title B]</span><span class="v">CVPR 2024</span></li>
@@ -248,8 +287,9 @@
         <li><span class="t">[Paper Title D]</span><span class="v">ICCV 2023</span></li>
       </ul>
     </div>
+    <!-- 博客 -->
     <div class="section" id="blog">
-      <h2>Technical Blog</h2>
+      <h2 data-en="Technical Blog" data-zh="技术博客">Technical Blog</h2>
       <ul class="blog-list">
         <li><span class="date">2026.05</span> Understanding Confirmation Bias in One-Stage WSSS</li>
         <li><span class="date">2026.04</span> CAM vs. Prototypes: A Technical Note on SIPE</li>
@@ -257,11 +297,12 @@
         <li><span class="date">2026.02</span> How We Designed the 2×2 Noise Experiment</li>
       </ul>
     </div>
+    <!-- 联系 -->
     <div class="section" id="contact">
-      <h2>Contact</h2>
+      <h2 data-en="Contact" data-zh="联系">Contact</h2>
       <p>Email: guangmo [at] example [dot] com<br>GitHub: <a href="#">github.com/Mia-Fennis</a><br>Google Scholar: <a href="#">[Profile]</a></p>
     </div>
-    <div class="footer">© Guangmo Yeren · 2026</div>
+    <div class="footer" data-en="© Guangmo Yeren · 2026" data-zh="© 广莫野人 · 2026">© Guangmo Yeren · 2026</div>
   </div>
 </div>
 
@@ -331,29 +372,29 @@ class InkParticle {
   reset() {
     this.x = Math.random() * canvas.width;
     this.y = Math.random() * canvas.height;
-    this.size = Math.random() * 6 + 2;
-    this.speedX = (Math.random() - 0.5) * 0.2;
-    this.speedY = (Math.random() - 0.5) * 0.2;
-    this.opacity = Math.random() * 0.5 + 0.15;
+    this.size = Math.random() * 8 + 3;
+    this.speedX = (Math.random() - 0.5) * 0.12;
+    this.speedY = (Math.random() - 0.5) * 0.12;
+    this.opacity = Math.random() * 0.4 + 0.35;
     this.life = Math.random() * 500 + 300;
     this.maxLife = this.life;
-    this.drift = Math.random() * 0.015;
+    this.drift = Math.random() * 0.01;
     this.phase = Math.random() * Math.PI * 2;
-    this.r = Math.floor(Math.random() * 40 + 100); // 100-140
-    this.g = Math.floor(Math.random() * 20 + 30);  // 30-50
-    this.b = Math.floor(Math.random() * 20 + 30);  // 30-50
+    this.r = Math.floor(Math.random() * 60 + 160);
+    this.g = Math.floor(Math.random() * 40 + 100);
+    this.b = Math.floor(Math.random() * 30 + 70);
   }
   update() {
-    this.x += this.speedX + Math.sin(this.phase) * 0.08;
-    this.y += this.speedY + Math.cos(this.phase) * 0.08;
+    this.x += this.speedX + Math.sin(this.phase) * 0.06;
+    this.y += this.speedY + Math.cos(this.phase) * 0.06;
     this.phase += this.drift;
     this.life--;
     const dx = this.x - mouseX, dy = this.y - mouseY;
     const dist = Math.sqrt(dx*dx + dy*dy);
     if (dist < 150) {
       const force = (150 - dist) / 150;
-      this.x += dx/dist * force * 2;
-      this.y += dy/dist * force * 2;
+      this.x += dx/dist * force * 2.5;
+      this.y += dy/dist * force * 2.5;
     }
     if (this.life <= 0 || this.x < -30 || this.x > canvas.width + 30 || this.y < -30 || this.y > canvas.height + 30) {
       this.reset();
@@ -363,7 +404,6 @@ class InkParticle {
   draw() {
     const lifeRatio = this.life / this.maxLife;
     const alpha = this.opacity * lifeRatio;
-    // 墨晕主圆
     const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 3);
     grad.addColorStop(0, `rgba(${this.r},${this.g},${this.b},${alpha * 0.8})`);
     grad.addColorStop(0.3, `rgba(${this.r},${this.g},${this.b},${alpha * 0.3})`);
@@ -375,8 +415,7 @@ class InkParticle {
   }
 }
 
-// Create particles
-let particleCount = Math.min(80, Math.floor(canvas.width * canvas.height / 12000));
+let particleCount = Math.min(120, Math.floor(canvas.width * canvas.height / 8000));
 for (let i = 0; i < particleCount; i++) {
   particles.push(new InkParticle());
 }
@@ -389,28 +428,25 @@ function animateParticles() {
 
 document.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
 
-// ── Navigation ──
-function setupNav(navId, pageClass) {
-  const nav = document.getElementById(navId);
-  nav.addEventListener('click', e => {
-    const a = e.target.closest('a');
-    if (!a) return;
-    nav.querySelectorAll('a').forEach(x => x.classList.remove('active'));
-    a.classList.add('active');
-    document.querySelectorAll(`.${pageClass} .section`).forEach(s => s.classList.remove('active'));
-    const page = document.getElementById(a.dataset.page);
-    if (page) page.classList.add('active');
+// ── Language Toggle (Yang side only) ──
+let currentLang = 'en'; // 默认英文（页面内容本来就是英文）
+const langBtn = document.getElementById('langToggle');
+
+function setLang(lang) {
+  currentLang = lang;
+  // 更新按钮文字
+  langBtn.querySelector('.label').textContent = lang === 'en' ? '中' : 'EN';
+  // 遍历所有带 data-en / data-zh 的元素
+  document.querySelectorAll('.yang [data-en]').forEach(el => {
+    el.innerHTML = el.getAttribute('data-' + lang);
   });
 }
-setupNav('yangNav', 'yang');
-setupNav('yinNav', 'yin');
 
-// ── Toggle Yang/Yin with Taiji ──
-const taijiBtn = document.getElementById('taijiBtn');
-const yang = document.getElementById('yangPage');
-const yin = document.getElementById('yinPage');
-let mode = 'yang';
+langBtn.addEventListener('click', () => {
+  setLang(currentLang === 'en' ? 'zh' : 'en');
+});
 
+// Yang/Yin 切换时显示/隐藏语言按钮
 taijiBtn.addEventListener('click', () => {
   mode = mode === 'yang' ? 'yin' : 'yang';
   taijiBtn.classList.toggle('spin');
@@ -418,9 +454,10 @@ taijiBtn.addEventListener('click', () => {
     taijiBtn.classList.remove('yang-mode');
     taijiBtn.classList.add('yin-mode');
     yang.classList.remove('active'); yin.classList.add('active');
+    langBtn.classList.remove('visible');
     canvas.style.display = 'block';
     if (particles.length === 0) {
-      const cnt = Math.min(80, Math.floor(canvas.width * canvas.height / 12000));
+      const cnt = Math.min(120, Math.floor(canvas.width * canvas.height / 8000));
       for (let i = 0; i < cnt; i++) particles.push(new InkParticle());
     }
     animateParticles();
@@ -428,9 +465,13 @@ taijiBtn.addEventListener('click', () => {
     taijiBtn.classList.remove('yin-mode');
     taijiBtn.classList.add('yang-mode');
     yin.classList.remove('active'); yang.classList.add('active');
+    langBtn.classList.add('visible');
     canvas.style.display = 'none';
   }
 });
+
+// 启动时显示语言按钮（初始为阳面）
+langBtn.classList.add('visible');
 </script>
 </body>
 </html>
