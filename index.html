@@ -610,32 +610,30 @@ const SEASON_EFFECTS = {
     }
   },
   summer: {
-    maxCount: 15,
-    spawnRate: 0.06,
+    maxCount: 20,
+    spawnRate: 0.08,
     create: () => {
       const w = canvas.width, h = canvas.height;
       return {
-        x: Math.random() * (w + 80) - 40,
+        x: Math.random() * (w + 100) - 50,
         y: -10 - Math.random() * 20,
-        len: Math.random() * 40 + 35,
-        speedY: Math.random() * 0.7 + 0.5,
-        speedX: (Math.random() - 0.5) * 0.15 - 0.08,
-        opacity: Math.random() * 0.2 + 0.15,
-        life: Math.random() * 50 + 30,
-        maxLife: 80,
-        r: Math.floor(Math.random() * 30 + 30),
-        g: Math.floor(Math.random() * 30 + 30),
-        b: Math.floor(Math.random() * 30 + 40)
+        len: Math.random() * 50 + 40,
+        speedY: Math.random() * 0.8 + 0.6,
+        speedX: (Math.random() - 0.5) * 0.15 - 0.1,
+        opacity: Math.random() * 0.3 + 0.2,
+        life: Math.random() * 45 + 25,
+        maxLife: 70,
+        r: 20, g: 20, b: 25
       };
     },
     draw: (p) => {
       const a = p.opacity * Math.sin(p.life / p.maxLife * Math.PI);
-      if (a < 0.01) return;
+      if (a < 0.02) return;
       ctx.beginPath();
       ctx.moveTo(p.x, p.y);
       ctx.lineTo(p.x + p.speedX * p.len * 2, p.y + p.len);
       ctx.strokeStyle = `rgba(${p.r},${p.g},${p.b},${a})`;
-      ctx.lineWidth = 1.2;
+      ctx.lineWidth = 1.5;
       ctx.stroke();
     }
   },
