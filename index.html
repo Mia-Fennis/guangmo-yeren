@@ -112,27 +112,27 @@
 .yin.season-spring .interest-item:hover { border-color: rgba(139,58,58,0.3); background: rgba(139,58,58,0.04); }
 .yin.season-spring .footer { color: #8a9a7a; border-top-color: rgba(74,90,74,0.06); }
 
-/* 夏 — 烟雨远山青（压暗） */
+/* 夏 — 烟雨远山青 */
 .page.yin.season-summer {
-  background: linear-gradient(160deg, #ccd2ca 0%, #a0aca5 100%);
-  color: #3a4a4a;
+  background: linear-gradient(160deg, #ddd9cf 0%, #c2c7bd 100%);
+  color: #4a5a5a;
 }
-.yin.season-summer header { border-bottom-color: rgba(58,74,74,0.15); }
-.yin.season-summer .subtitle { color: #6a8a82; }
-.yin.season-summer .nav-bar a { color: #5a7a72; }
-.yin.season-summer .nav-bar a:hover { color: #2a4a42; }
-.yin.season-summer .nav-bar a.active { color: #1a3a32; }
-.yin.season-summer .nav-bar { border-bottom-color: rgba(58,74,74,0.1); }
-.yin.season-summer #wilderness .big { color: #2a4a4a; }
-.yin.season-summer #wilderness .quote { color: #5a8a82; }
-.yin.season-summer .essay p, .yin.season-summer #useless p { color: #4a6a62; }
-.yin.season-summer .essay .date { color: #6a8a82; }
-.yin.season-summer .essay .sig { color: #6a8a82; }
-.yin.season-summer .shrimp-entry p { color: #4a6a62; }
-.yin.season-summer .interest-item { border-color: rgba(58,74,74,0.12); }
-.yin.season-summer .interest-item .name { color: #3a4a4a; }
+.yin.season-summer header { border-bottom-color: rgba(74,90,90,0.12); }
+.yin.season-summer .subtitle { color: #7a9590; }
+.yin.season-summer .nav-bar a { color: #6a8578; }
+.yin.season-summer .nav-bar a:hover { color: #3a5548; }
+.yin.season-summer .nav-bar a.active { color: #2a4538; }
+.yin.season-summer .nav-bar { border-bottom-color: rgba(74,90,90,0.08); }
+.yin.season-summer #wilderness .big { color: #3a5a5a; }
+.yin.season-summer #wilderness .quote { color: #6a958a; }
+.yin.season-summer .essay p, .yin.season-summer #useless p { color: #5a756a; }
+.yin.season-summer .essay .date { color: #7a9590; }
+.yin.season-summer .essay .sig { color: #7a9590; }
+.yin.season-summer .shrimp-entry p { color: #5a756a; }
+.yin.season-summer .interest-item { border-color: rgba(74,90,90,0.1); }
+.yin.season-summer .interest-item .name { color: #4a5a5a; }
 .yin.season-summer .interest-item:hover { border-color: rgba(139,58,58,0.3); background: rgba(139,58,58,0.04); }
-.yin.season-summer .footer { color: #6a8a82; border-top-color: rgba(58,74,74,0.08); }
+.yin.season-summer .footer { color: #7a9590; border-top-color: rgba(74,90,90,0.06); }
 
 /* 秋 — 秋暮落霞融 */
 .page.yin.season-autumn {
@@ -192,7 +192,7 @@
   border-radius: 2px;
 }
 .season-spring .season-btn { color: #8a9a7a; }
-.season-summer .season-btn { color: #6a8a82; }
+.season-summer .season-btn { color: #7a9590; }
 .season-autumn .season-btn { color: #9a8a6a; }
 .season-winter .season-btn { color: #7a7a7a; }
 .season-btn:hover { transform: scale(1.15); }
@@ -620,12 +620,12 @@ const SEASON_EFFECTS = {
         len: Math.random() * 35 + 25,
         speedY: Math.random() * 0.6 + 0.4,
         speedX: (Math.random() - 0.5) * 0.15 - 0.08,
-        opacity: Math.random() * 0.07 + 0.04,
+        opacity: Math.random() * 0.08 + 0.05,
         life: Math.random() * 65 + 45,
         maxLife: 110,
-        r: Math.floor(Math.random() * 30 + 170),
-        g: Math.floor(Math.random() * 30 + 180),
-        b: Math.floor(Math.random() * 30 + 200)
+        r: Math.floor(Math.random() * 30 + 100),
+        g: Math.floor(Math.random() * 30 + 120),
+        b: Math.floor(Math.random() * 40 + 155)
       };
     },
     draw: (p) => {
@@ -904,7 +904,7 @@ function setSeason(season) {
   // 更新导航栏 border
   const seasonColors = {
     spring: 'rgba(74,90,74,0.08)',
-    summer: 'rgba(58,74,74,0.1)',
+    summer: 'rgba(74,90,90,0.08)',
     autumn: 'rgba(90,74,58,0.08)',
     winter: 'rgba(74,74,74,0.1)'
   };
