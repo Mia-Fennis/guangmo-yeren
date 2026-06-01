@@ -83,28 +83,141 @@
 .yang #contact a { color: #1a1a1a; text-decoration: underline; text-underline-offset: 3px; }
 .yang .footer { padding: 24px 0; border-top: 1px solid #eee; font-size: 11px; color: #bbb; letter-spacing: 0.05em; }
 
-/* ══════ 🌙 YIN — 水墨动态 ══════ */
+/* ══════ 🌙 YIN — 山水四季 ══════ */
+/* 季节背景渐变 — 通过 JS 切换 .season-* class */
 .page.yin {
-  background: #1c1a16; color: #c8c3b8;
   font-family: 'Noto Serif SC', 'ZCOOL XiaoWei', serif;
+  transition: background .8s ease, color .8s ease;
 }
-/* 水墨粒子 Canvas */
+
+/* 春 — 春岚翠微 */
+.page.yin.season-spring {
+  background: linear-gradient(160deg, #e0e3dc 0%, #c4c9be 100%);
+  color: #4a5a4a;
+}
+.season-spring .yin header { border-bottom-color: rgba(74,90,74,0.12); }
+.season-spring .yin .subtitle { color: #8a9a7a; }
+.season-spring .yin .nav-bar a { color: #7a8a6a; }
+.season-spring .yin .nav-bar a:hover { color: #3a4a3a; }
+.season-spring .yin .nav-bar a.active { color: #2a3a2a; }
+.season-spring .yin .nav-bar { border-bottom-color: rgba(74,90,74,0.08); }
+.season-spring .yin #wilderness .big { color: #3a5a3a; }
+.season-spring .yin #wilderness .quote { color: #7a9a7a; }
+.season-spring .yin .essay p, .season-spring .yin #useless p { color: #5a6a5a; }
+.season-spring .yin .essay .date { color: #8a9a7a; }
+.season-spring .yin .essay .sig { color: #8a9a7a; }
+.season-spring .yin .shrimp-entry p { color: #5a6a5a; }
+.season-spring .yin .interest-item { border-color: rgba(74,90,74,0.1); }
+.season-spring .yin .interest-item .name { color: #4a5a4a; }
+.season-spring .yin .interest-item:hover { border-color: rgba(139,58,58,0.3); background: rgba(139,58,58,0.04); }
+.season-spring .yin .footer { color: #8a9a7a; border-top-color: rgba(74,90,74,0.06); }
+
+/* 夏 — 烟雨远山青 */
+.page.yin.season-summer {
+  background: linear-gradient(160deg, #e2ddd4 0%, #c8cdc4 100%);
+  color: #4a555a;
+}
+.season-summer .yin header { border-bottom-color: rgba(74,85,90,0.12); }
+.season-summer .yin .subtitle { color: #8a959a; }
+.season-summer .yin .nav-bar a { color: #7a858a; }
+.season-summer .yin .nav-bar a:hover { color: #3a454a; }
+.season-summer .yin .nav-bar a.active { color: #2a353a; }
+.season-summer .yin .nav-bar { border-bottom-color: rgba(74,85,90,0.08); }
+.season-summer .yin #wilderness .big { color: #3a555a; }
+.season-summer .yin #wilderness .quote { color: #7a959a; }
+.season-summer .yin .essay p, .season-summer .yin #useless p { color: #5a6a6a; }
+.season-summer .yin .essay .date { color: #8a959a; }
+.season-summer .yin .essay .sig { color: #8a959a; }
+.season-summer .yin .shrimp-entry p { color: #5a6a6a; }
+.season-summer .yin .interest-item { border-color: rgba(74,85,90,0.1); }
+.season-summer .yin .interest-item .name { color: #4a555a; }
+.season-summer .yin .interest-item:hover { border-color: rgba(139,58,58,0.3); background: rgba(139,58,58,0.04); }
+.season-summer .yin .footer { color: #8a959a; border-top-color: rgba(74,85,90,0.06); }
+
+/* 秋 — 秋暮落霞融 */
+.page.yin.season-autumn {
+  background: linear-gradient(160deg, #e6ddd0 0%, #cfc6b8 100%);
+  color: #5a4a3a;
+}
+.season-autumn .yin header { border-bottom-color: rgba(90,74,58,0.12); }
+.season-autumn .yin .subtitle { color: #9a8a7a; }
+.season-autumn .yin .nav-bar a { color: #8a7a6a; }
+.season-autumn .yin .nav-bar a:hover { color: #4a3a2a; }
+.season-autumn .yin .nav-bar a.active { color: #3a2a1a; }
+.season-autumn .yin .nav-bar { border-bottom-color: rgba(90,74,58,0.08); }
+.season-autumn .yin #wilderness .big { color: #5a4a2a; }
+.season-autumn .yin #wilderness .quote { color: #8a7a5a; }
+.season-autumn .yin .essay p, .season-autumn .yin #useless p { color: #6a5a4a; }
+.season-autumn .yin .essay .date { color: #9a8a6a; }
+.season-autumn .yin .essay .sig { color: #9a8a6a; }
+.season-autumn .yin .shrimp-entry p { color: #6a5a4a; }
+.season-autumn .yin .interest-item { border-color: rgba(90,74,58,0.1); }
+.season-autumn .yin .interest-item .name { color: #5a4a3a; }
+.season-autumn .yin .interest-item:hover { border-color: rgba(139,58,58,0.3); background: rgba(139,58,58,0.04); }
+.season-autumn .yin .footer { color: #9a8a6a; border-top-color: rgba(90,74,58,0.06); }
+
+/* 冬 — 雪霁初晴 */
+.page.yin.season-winter {
+  background: linear-gradient(160deg, #edebe4 0%, #d5d4cc 100%);
+  color: #555555;
+}
+.season-winter .yin header { border-bottom-color: rgba(85,85,85,0.12); }
+.season-winter .yin .subtitle { color: #959595; }
+.season-winter .yin .nav-bar a { color: #858585; }
+.season-winter .yin .nav-bar a:hover { color: #454545; }
+.season-winter .yin .nav-bar a.active { color: #353535; }
+.season-winter .yin .nav-bar { border-bottom-color: rgba(85,85,85,0.08); }
+.season-winter .yin #wilderness .big { color: #555555; }
+.season-winter .yin #wilderness .quote { color: #858585; }
+.season-winter .yin .essay p, .season-winter .yin #useless p { color: #666666; }
+.season-winter .yin .essay .date { color: #959595; }
+.season-winter .yin .essay .sig { color: #959595; }
+.season-winter .yin .shrimp-entry p { color: #666666; }
+.season-winter .yin .interest-item { border-color: rgba(85,85,85,0.1); }
+.season-winter .yin .interest-item .name { color: #555555; }
+.season-winter .yin .interest-item:hover { border-color: rgba(139,58,58,0.3); background: rgba(139,58,58,0.04); }
+.season-winter .yin .footer { color: #959595; border-top-color: rgba(85,85,85,0.06); }
+
+/* 四季切换按钮 */
+.season-selector {
+  display: flex; justify-content: center; gap: 4px;
+  margin-top: 16px; margin-bottom: 20px;
+}
+.season-btn {
+  display: inline-block;
+  font-family: 'Ma Shan Zheng', 'ZCOOL XiaoWei', cursive;
+  font-size: 18px; line-height: 1; padding: 2px 10px 4px;
+  cursor: pointer; user-select: none;
+  transition: all .4s ease;
+  border-radius: 2px;
+}
+.season-spring .season-btn { color: #8a9a7a; }
+.season-summer .season-btn { color: #8a959a; }
+.season-autumn .season-btn { color: #9a8a6a; }
+.season-winter .season-btn { color: #959595; }
+.season-btn:hover { transform: scale(1.15); }
+.season-spring .season-btn.active { color: #8b3a3a; background: rgba(139,58,58,0.06); }
+.season-summer .season-btn.active { color: #8b3a3a; background: rgba(139,58,58,0.06); }
+.season-autumn .season-btn.active { color: #8b3a3a; background: rgba(139,58,58,0.06); }
+.season-winter .season-btn.active { color: #8b3a3a; background: rgba(139,58,58,0.06); }
+
+/* 水墨云雾 Canvas */
 #inkCanvas {
   position: fixed; top: 0; left: 0; width: 100%; height: 100%;
   pointer-events: none; z-index: 0; display: none;
 }
 .yin .container { max-width: 640px; padding: 0 40px; position: relative; z-index: 1; }
-.yin header { padding: 60px 0 0; text-align: center; border-bottom: 1px solid rgba(200,195,184,0.1); margin-bottom: 0; }
+.yin header { padding: 60px 0 0; text-align: center; }
 .yin header .seal {
   display: inline-block; border: 1.5px solid #8b3a3a; color: #8b3a3a;
   padding: 3px 8px; font-size: 11px; letter-spacing: 0.15em;
   font-family: 'Ma Shan Zheng', cursive;
-  margin-bottom: 20px;
+  margin-bottom: 8px;
   transition: transform 3s ease;
 }
 .yin header .seal:hover { transform: rotate(360deg) scale(1.1); }
-.yin header h1 { font-size: 40px; font-weight: 200; letter-spacing: 0.3em; color: #d4cfc4; margin-bottom: 4px; }
-.yin header .subtitle { font-size: 12px; color: #6b6558; letter-spacing: 0.2em; margin-bottom: 20px; }
+.yin header h1 { font-size: 40px; font-weight: 200; letter-spacing: 0.3em; color: inherit; margin-bottom: 4px; }
+.yin header .subtitle { font-size: 12px; letter-spacing: 0.2em; margin-bottom: 0; }
 
 /* 阴面导航 — 毛笔悬停效果 */
 .yin .nav-bar { display: flex; justify-content: center; gap: 0; flex-wrap: wrap; border-bottom: 1px solid rgba(200,195,184,0.08); padding: 0; }
@@ -297,13 +410,19 @@
 
 <!-- ══════ 🌙 阴面 ══════ -->
 <canvas id="inkCanvas"></canvas>
-<div class="page yin" id="yinPage">
+<div class="page yin season-spring" id="yinPage">
   <div class="container">
     <header>
       <div class="seal">广 莫 之 野</div>
       <h1>广莫野人</h1>
       <div class="subtitle">— 逍遥游 · 庄子 —</div>
-      <div class="nav-bar" id="yinNav">
+      <div class="season-selector">
+        <span class="season-btn active" data-season="spring">春</span>
+        <span class="season-btn" data-season="summer">夏</span>
+        <span class="season-btn" data-season="autumn">秋</span>
+        <span class="season-btn" data-season="winter">冬</span>
+      </div>
+      <div class="nav-bar" id="yinNav" style="border-bottom:1px solid transparent;">
         <a class="active" data-page="wilderness">广莫之野</a>
         <a data-page="essays">随笔</a>
         <a data-page="shrimp">养虾纪</a>
@@ -343,11 +462,14 @@
 </div>
 
 <script>
-// ── Ink Particles Canvas ──
+// ── Mist Particles (山水云雾) ──
 const canvas = document.getElementById('inkCanvas');
 const ctx = canvas.getContext('2d');
-let particles = [];
-let mouseX = -1000, mouseY = -1000;
+let mist = [];
+let mouseX = -10000, mouseY = -10000;
+let mouseActive = false;
+let mouseTimer = null;
+let animFrame = null;
 
 function resizeCanvas() {
   canvas.width = window.innerWidth;
@@ -356,66 +478,139 @@ function resizeCanvas() {
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
 
-class InkParticle {
-  constructor() { this.reset(); }
-  reset() {
+// 季节配色 — 雾的颜色
+const SEASON_COLORS = {
+  spring: { r: [170,210], g: [190,230], b: [170,200], a: [0.06,0.18] },
+  summer: { r: [180,215], g: [195,225], b: [200,230], a: [0.05,0.15] },
+  autumn: { r: [200,225], g: [180,210], b: [155,185], a: [0.06,0.16] },
+  winter: { r: [210,235], g: [210,235], b: [215,240], a: [0.05,0.14] }
+};
+
+class MistParticle {
+  constructor() { this.reset(true); }
+  reset(full) {
     this.x = Math.random() * canvas.width;
     this.y = Math.random() * canvas.height;
-    this.size = Math.random() * 8 + 3;
-    this.speedX = (Math.random() - 0.5) * 0.12;
-    this.speedY = (Math.random() - 0.5) * 0.12;
-    this.opacity = Math.random() * 0.4 + 0.35;
-    this.life = Math.random() * 500 + 300;
-    this.maxLife = this.life;
-    this.drift = Math.random() * 0.01;
+    this.size = Math.random() * 60 + 30;
+    this.baseOpacity = 0;
+    this.targetOpacity = Math.random() * 0.01 + 0.005; // 默认几乎不可见
+    this.opacity = this.targetOpacity;
+    this.driftX = (Math.random() - 0.5) * 0.04;
+    this.driftY = (Math.random() - 0.5) * 0.04 - 0.02; // 轻微上浮
     this.phase = Math.random() * Math.PI * 2;
-    this.r = Math.floor(Math.random() * 60 + 160);
-    this.g = Math.floor(Math.random() * 40 + 100);
-    this.b = Math.floor(Math.random() * 30 + 70);
+    this.speed = Math.random() * 0.008 + 0.003;
+    // 颜色初始按春季
+    this.updateColor('spring');
   }
-  update() {
-    this.x += this.speedX + Math.sin(this.phase) * 0.06;
-    this.y += this.speedY + Math.cos(this.phase) * 0.06;
-    this.phase += this.drift;
-    this.life--;
-    const dx = this.x - mouseX, dy = this.y - mouseY;
+  updateColor(season) {
+    const c = SEASON_COLORS[season] || SEASON_COLORS.spring;
+    this.r = Math.floor(Math.random() * (c.r[1]-c.r[0]) + c.r[0]);
+    this.g = Math.floor(Math.random() * (c.g[1]-c.g[0]) + c.g[0]);
+    this.b = Math.floor(Math.random() * (c.b[1]-c.b[0]) + c.b[0]);
+    this.minA = c.a[0];
+    this.maxA = c.a[1];
+  }
+  update(season) {
+    this.phase += this.speed;
+    this.x += this.driftX + Math.sin(this.phase) * 0.02;
+    this.y += this.driftY + Math.cos(this.phase * 0.7) * 0.02;
+
+    // 鼠标影响 — 靠近时雾被搅动
+    const dx = this.x - mouseX;
+    const dy = this.y - mouseY;
     const dist = Math.sqrt(dx*dx + dy*dy);
-    if (dist < 150) {
-      const force = (150 - dist) / 150;
-      this.x += dx/dist * force * 2.5;
-      this.y += dy/dist * force * 2.5;
+    const influence = 220;
+
+    if (dist < influence) {
+      const force = (influence - dist) / influence;
+      // 被鼠标推开 — 同时旋转
+      const angle = Math.atan2(dy, dx) + (Math.random() - 0.5) * 0.8;
+      const push = force * 1.2;
+      this.x += Math.cos(angle) * push;
+      this.y += Math.sin(angle) * push;
+      // 鼠标附近雾变得更可见
+      const c = SEASON_COLORS[season] || SEASON_COLORS.spring;
+      this.targetOpacity = c.a[0] + force * (c.a[1] - c.a[0]) * 1.5;
+      this.targetOpacity = Math.min(this.targetOpacity, c.a[1] * 1.8);
+      mouseActive = true;
+    } else {
+      // 远离鼠标时逐渐消退
+      this.targetOpacity = this.minA * 0.6 + Math.sin(this.phase * 0.5) * 0.005;
+      this.targetOpacity = Math.max(0, this.targetOpacity);
     }
-    if (this.life <= 0 || this.x < -30 || this.x > canvas.width + 30 || this.y < -30 || this.y > canvas.height + 30) {
-      this.reset();
-      this.life = this.maxLife;
-    }
+    // 平滑过渡透明
+    this.opacity += (this.targetOpacity - this.opacity) * 0.02;
+
+    // 边界循环
+    if (this.x < -100) this.x = canvas.width + 80;
+    if (this.x > canvas.width + 100) this.x = -80;
+    if (this.y < -100) this.y = canvas.height + 80;
+    if (this.y > canvas.height + 100) this.y = -80;
   }
   draw() {
-    const lifeRatio = this.life / this.maxLife;
-    const alpha = this.opacity * lifeRatio;
-    const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 3);
-    grad.addColorStop(0, `rgba(${this.r},${this.g},${this.b},${alpha * 0.8})`);
-    grad.addColorStop(0.3, `rgba(${this.r},${this.g},${this.b},${alpha * 0.3})`);
+    if (this.opacity < 0.001) return;
+    const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size);
+    grad.addColorStop(0, `rgba(${this.r},${this.g},${this.b},${this.opacity * 0.6})`);
+    grad.addColorStop(0.5, `rgba(${this.r},${this.g},${this.b},${this.opacity * 0.2})`);
     grad.addColorStop(1, `rgba(${this.r},${this.g},${this.b},0)`);
     ctx.beginPath();
-    ctx.arc(this.x, this.y, this.size * 3, 0, Math.PI * 2);
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
     ctx.fillStyle = grad;
     ctx.fill();
   }
 }
 
-let particleCount = Math.min(120, Math.floor(canvas.width * canvas.height / 8000));
-for (let i = 0; i < particleCount; i++) {
-  particles.push(new InkParticle());
+let currentSeason = 'spring';
+
+function initMist() {
+  const count = Math.min(40, Math.floor(canvas.width * canvas.height / 30000));
+  for (let i = 0; i < count; i++) {
+    const m = new MistParticle();
+    m.updateColor(currentSeason);
+    mist.push(m);
+  }
 }
 
-function animateParticles() {
+function animateMist() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  particles.forEach(p => { p.update(); p.draw(); });
-  requestAnimationFrame(animateParticles);
+  mist.forEach(m => { m.update(currentSeason); m.draw(); });
+  animFrame = requestAnimationFrame(animateMist);
 }
 
-document.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
+document.addEventListener('mousemove', e => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+  clearTimeout(mouseTimer);
+  mouseTimer = setTimeout(() => { mouseActive = false; }, 2000);
+});
+
+// ── 四季切换 ──
+function setSeason(season) {
+  currentSeason = season;
+  const yinPage = document.getElementById('yinPage');
+  // 更新 class
+  yinPage.className = yinPage.className.replace(/season-\w+/g, '').trim();
+  yinPage.classList.add('season-' + season);
+  // 更新按钮状态
+  document.querySelectorAll('.season-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector(`.season-btn[data-season="${season}"]`).classList.add('active');
+  // 更新导航栏 border
+  const seasonColors = {
+    spring: 'rgba(74,90,74,0.08)',
+    summer: 'rgba(74,85,90,0.08)',
+    autumn: 'rgba(90,74,58,0.08)',
+    winter: 'rgba(85,85,85,0.08)'
+  };
+  document.getElementById('yinNav').style.borderBottomColor = seasonColors[season];
+  // 更新粒子颜色
+  mist.forEach(m => m.updateColor(season));
+  // 触发雾的微动
+  mist.forEach(m => { m.targetOpacity = m.minA + 0.03; });
+}
+
+document.querySelectorAll('.season-btn').forEach(btn => {
+  btn.addEventListener('click', () => setSeason(btn.dataset.season));
+});
 
 // ── Navigation ──
 function setupNav(navId, pageClass) {
@@ -466,11 +661,10 @@ taijiBtn.addEventListener('click', () => {
     taijiBtn.classList.add('yin-mode');
     yang.classList.remove('active'); yin.classList.add('active');
     canvas.style.display = 'block';
-    if (particles.length === 0) {
-      const cnt = Math.min(120, Math.floor(canvas.width * canvas.height / 8000));
-      for (let i = 0; i < cnt; i++) particles.push(new InkParticle());
+    if (mist.length === 0) {
+      initMist();
     }
-    animateParticles();
+    animateMist();
   } else {
     taijiBtn.classList.remove('yin-mode');
     taijiBtn.classList.add('yang-mode');
