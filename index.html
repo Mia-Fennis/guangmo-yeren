@@ -22,23 +22,17 @@
 .taiji-toggle.yang-mode .outer-ring { stroke: #666; }
 .taiji-toggle.yin-mode .outer-ring { stroke: #8b3a3a; }
 
-/* ── 语言切换（仅阳面可见） ── */
-.lang-toggle {
-  position: fixed; top: 78px; right: 24px; z-index: 998;
-  width: 34px; height: 24px;
-  display: none;  /* 默认隐藏，yin 页隐藏 */
-  align-items: center; justify-content: center;
+/* ── 语言切换（嵌入阳面标题栏） ── */
+.lang-inline {
+  display: inline;
   cursor: pointer; user-select: none;
   font-family: 'Inter', sans-serif;
   font-size: 11px; font-weight: 500; letter-spacing: 0.05em;
-  color: #888; background: transparent;
-  border: 1px solid #ccc; border-radius: 12px;
-  transition: all .25s;
-  line-height: 1;
+  color: #aaa; margin-left: 10px;
+  transition: color .25s;
+  white-space: nowrap;
 }
-.lang-toggle.visible { display: flex; }
-.lang-toggle:hover { color: #1a1a1a; border-color: #888; }
-.lang-toggle .label { pointer-events: none; }
+.lang-inline:hover { color: #1a1a1a; }
 
 /* ── Page base ── */
 .page { min-height: 100vh; transition: all .6s; display: none; }
@@ -189,8 +183,6 @@
 
 @media (max-width: 640px) {
   .container { padding: 0 20px; }
-  .toggle-wrap { top: 12px; right: 12px; }
-  .lang-toggle { top: 66px; right: 12px; }
   .yang .nav-bar, .yin .nav-bar { overflow-x: auto; white-space: nowrap; }
   .yin .interest-grid { grid-template-columns: 1fr; }
   .yang #home .hero-main { font-size: 36px; }
@@ -222,15 +214,12 @@
   </svg>
 </div>
 
-<!-- 语言切换按钮（仅在阳面显示） -->
-<div class="lang-toggle" id="langToggle"><span class="label">EN</span></div>
-
 <!-- ══════ ☀️ 阳面 ══════ -->
 <div class="page yang active" id="yangPage">
   <div class="container">
     <header>
       <h1>广莫野人</h1>
-      <div class="sub">Guangmo Yeren</div>
+      <div class="sub">Guangmo Yeren <span class="lang-inline" id="langToggle">EN</span></div>
       <div class="nav-bar" id="yangNav">
         <a class="active" data-page="home" data-en="Home" data-zh="首页">Home</a>
         <a data-page="about" data-en="About" data-zh="关于">About</a>
@@ -428,6 +417,28 @@ function animateParticles() {
 
 document.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
 
+// ── Navigation ──
+function setupNav(navId, pageClass) {
+  const nav = document.getElementById(navId);
+  nav.addEventListener('click', e => {
+    const a = e.target.closest('a');
+    if (!a) return;
+    nav.querySelectorAll('a').forEach(x => x.classList.remove('active'));
+    a.classList.add('active');
+    document.querySelectorAll(`.${pageClass} .section`).forEach(s => s.classList.remove('active'));
+    const page = document.getElementById(a.dataset.page);
+    if (page) page.classList.add('active');
+  });
+}
+setupNav('yangNav', 'yang');
+setupNav('yinNav', 'yin');
+
+// ── Toggle Yang/Yin with Taiji ──
+const taijiBtn = document.getElementById('taijiBtn');
+const yang = document.getElementById('yangPage');
+const yin = document.getElementById('yinPage');
+let mode = 'yang';
+
 // ── Language Toggle (Yang side only) ──
 let currentLang = 'en'; // 默认英文（页面内容本来就是英文）
 const langBtn = document.getElementById('langToggle');
@@ -435,7 +446,7 @@ const langBtn = document.getElementById('langToggle');
 function setLang(lang) {
   currentLang = lang;
   // 更新按钮文字
-  langBtn.querySelector('.label').textContent = lang === 'en' ? '中' : 'EN';
+  langBtn.textContent = lang === 'en' ? '中' : 'EN';
   // 遍历所有带 data-en / data-zh 的元素
   document.querySelectorAll('.yang [data-en]').forEach(el => {
     el.innerHTML = el.getAttribute('data-' + lang);
@@ -454,7 +465,6 @@ taijiBtn.addEventListener('click', () => {
     taijiBtn.classList.remove('yang-mode');
     taijiBtn.classList.add('yin-mode');
     yang.classList.remove('active'); yin.classList.add('active');
-    langBtn.classList.remove('visible');
     canvas.style.display = 'block';
     if (particles.length === 0) {
       const cnt = Math.min(120, Math.floor(canvas.width * canvas.height / 8000));
@@ -465,13 +475,9 @@ taijiBtn.addEventListener('click', () => {
     taijiBtn.classList.remove('yin-mode');
     taijiBtn.classList.add('yang-mode');
     yin.classList.remove('active'); yang.classList.add('active');
-    langBtn.classList.add('visible');
     canvas.style.display = 'none';
   }
 });
-
-// 启动时显示语言按钮（初始为阳面）
-langBtn.classList.add('visible');
 </script>
 </body>
 </html>
