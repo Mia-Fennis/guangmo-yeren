@@ -3,336 +3,444 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>广莫野人 · 风格原型</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Noto+Serif+SC:wght@200;400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;600;700&family=ZCOOL+XiaoWei&family=Ma+Shan+Zheng&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>广莫野人 · 阴阳双面</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,200;14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Noto+Serif+SC:wght@200;300;400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;600;700&family=Ma+Shan+Zheng&family=ZCOOL+XiaoWei&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
 
-/* ── 切换按钮 ── */
+/* ── Toggle ── */
 .toggle-wrap {
-  position: fixed; top: 24px; right: 24px;
-  z-index: 999;
+  position: fixed; top: 24px; right: 24px; z-index: 999;
   display: flex; align-items: center; gap: 10px;
-  font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 500;
-  letter-spacing: 0.1em;
+  font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.1em;
 }
 .toggle-wrap.yang-mode { color: #1a1a1a; }
-.toggle-wrap.yin-mode { color: #c8c3b8; }
+.toggle-wrap.yin-mode { color: #a39e8f; }
 .switch {
-  width: 56px; height: 28px;
-  border-radius: 14px;
-  cursor: pointer; position: relative;
-  transition: all .4s;
+  width: 56px; height: 28px; border-radius: 14px;
+  cursor: pointer; position: relative; transition: all .5s;
   border: 1.5px solid;
 }
 .switch.yang { background: #e8e8e8; border-color: #1a1a1a; }
 .switch.yin { background: #2a2824; border-color: #6b6558; }
 .switch .knob {
-  width: 22px; height: 22px; border-radius: 50%;
-  position: absolute; top: 2px;
-  transition: all .4s cubic-bezier(.68,-.55,.27,1.55);
+  width: 22px; height: 22px; border-radius: 50%; position: absolute; top: 2px;
+  transition: all .5s cubic-bezier(.68,-.55,.27,1.55);
 }
 .switch.yang .knob { left: 2px; background: #1a1a1a; }
 .switch.yin .knob { left: 30px; background: #c8c3b8; }
 
-/* ── 容器 ── */
-.page {
-  min-height: 100vh;
-  transition: all .6s;
-}
+/* ── Page base ── */
+.page { min-height: 100vh; transition: all .6s; display: none; }
+.page.active { display: block; }
+.container { max-width: 720px; margin: 0 auto; padding: 0 40px; }
 
-/* ════════════════ ☀️ 阳面：学术极简 ════════════════ */
+/* ══════ ☀️ YANG ══════ */
 .page.yang {
-  background: #f5f5f0;
-  color: #1a1a1a;
+  background: #f5f5f0; color: #1a1a1a;
   font-family: 'Inter', 'Noto Sans SC', sans-serif;
 }
-.yang .container {
-  max-width: 720px; margin: 0 auto;
-  padding: 80px 40px;
-}
+.yang .container { max-width: 740px; }
 .yang header {
-  margin-bottom: 80px;
-  border-bottom: 1px solid #1a1a1a;
-  padding-bottom: 32px;
+  padding: 60px 0 0;
+  border-bottom: 1px solid #1a1a1a; margin-bottom: 0;
 }
 .yang header h1 {
-  font-size: 42px; font-weight: 300;
-  letter-spacing: -0.04em; margin-bottom: 8px;
+  font-size: 38px; font-weight: 200;
+  letter-spacing: -0.03em; margin-bottom: 4px;
   font-family: 'Inter', sans-serif;
 }
 .yang header .sub {
-  font-size: 14px; color: #666;
-  font-weight: 400; letter-spacing: 0.02em;
+  font-size: 13px; color: #888; font-weight: 400;
+  margin-bottom: 24px; letter-spacing: 0.02em;
 }
-.yang .nav {
-  display: flex; gap: 0;
-  margin-bottom: 64px;
-  border-bottom: 1px solid #ddd;
+.yang .nav-bar {
+  display: flex; gap: 0; border-bottom: 1px solid #ddd;
 }
-.yang .nav a {
-  padding: 12px 20px;
-  font-size: 13px; font-weight: 400;
-  color: #666; text-decoration: none;
-  letter-spacing: 0.05em;
-  border-bottom: 1px solid transparent;
-  margin-bottom: -1px;
-  transition: all .15s;
+.yang .nav-bar a {
+  padding: 10px 18px; font-size: 12px; font-weight: 400;
+  color: #888; text-decoration: none; letter-spacing: 0.06em;
+  border-bottom: 2px solid transparent; margin-bottom: -1px;
+  cursor: pointer; transition: all .15s;
 }
-.yang .nav a:hover { color: #1a1a1a; border-bottom-color: #1a1a1a; }
-.yang .section { margin-bottom: 56px; }
+.yang .nav-bar a:hover { color: #1a1a1a; }
+.yang .nav-bar a.active { color: #1a1a1a; border-bottom-color: #1a1a1a; }
+.yang .section { padding: 48px 0; display: none; }
+.yang .section.active { display: block; }
 .yang .section h2 {
-  font-size: 13px; font-weight: 600;
-  text-transform: uppercase; letter-spacing: 0.1em;
-  color: #999; margin-bottom: 20px;
+  font-size: 12px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.12em; color: #aaa; margin-bottom: 24px;
 }
-.yang .section p {
-  font-size: 15px; line-height: 1.8;
-  color: #333; max-width: 600px;
-}
+.yang .section h3 { font-size: 20px; font-weight: 400; margin-bottom: 16px; }
+
+/* 首页 - 单屏 */
+.yang #home { padding-top: 100px; min-height: calc(100vh - 160px); display: flex; flex-direction: column; justify-content: center; }
+.yang #home.active { display: flex; }
+.yang #home h2 { display: none; }
+.yang #home .hero-main { font-size: 56px; font-weight: 200; letter-spacing: -0.04em; line-height: 1.2; margin-bottom: 16px; }
+.yang #home .hero-sub { font-size: 16px; color: #666; max-width: 500px; line-height: 1.6; font-weight: 300; }
+.yang #home .hero-tag { margin-top: 32px; display: flex; gap: 16px; font-size: 12px; color: #999; }
+.yang #home .hero-tag span { padding: 4px 12px; border: 1px solid #ddd; border-radius: 20px; }
+
+/* 关于 */
+.yang #about .bio { font-size: 14px; line-height: 1.9; color: #444; max-width: 600px; margin-bottom: 32px; }
 .yang .timeline { list-style: none; }
 .yang .timeline li {
-  padding: 12px 0;
-  border-bottom: 1px solid #eee;
-  font-size: 14px; color: #444;
-  display: flex; gap: 24px;
+  padding: 14px 0; border-bottom: 1px solid #eee;
+  font-size: 13px; color: #555; display: flex; gap: 20px; align-items: baseline;
 }
-.yang .timeline .yr { color: #999; min-width: 60px; font-family: 'JetBrains Mono', monospace; font-size: 12px; }
-.yang .papers { list-style: none; }
+.yang .timeline .yr { color: #aaa; min-width: 55px; font-family: 'JetBrains Mono', monospace; font-size: 12px; }
+.yang .timeline .desc { flex: 1; }
+.yang .timeline .detail { font-size: 12px; color: #999; }
+
+/* 研究 */
+.yang .direction { margin-bottom: 32px; }
+.yang .direction h3 { font-size: 16px; font-weight: 500; margin-bottom: 8px; }
+.yang .direction p { font-size: 14px; color: #555; line-height: 1.7; }
+.yang .papers { list-style: none; margin-top: 16px; }
 .yang .papers li {
-  padding: 10px 0;
-  border-bottom: 1px solid #eee;
-  font-size: 14px; color: #444;
+  padding: 10px 0; border-bottom: 1px solid #eee;
+  font-size: 13px; color: #555;
 }
-.yang .papers .title { font-weight: 500; color: #1a1a1a; }
-.yang .papers .venue { font-size: 12px; color: #999; margin-left: 8px; }
-.yang footer {
-  margin-top: 80px; padding-top: 24px;
-  border-top: 1px solid #ddd;
-  font-size: 12px; color: #999;
+.yang .papers .t { font-weight: 500; color: #1a1a1a; }
+.yang .papers .v { font-size: 12px; color: #999; margin-left: 6px; }
+.yang .papers .y { font-size: 11px; color: #bbb; margin-left: 6px; }
+
+/* 技术博客 */
+.yang .blog-list { list-style: none; }
+.yang .blog-list li {
+  padding: 14px 0; border-bottom: 1px solid #eee;
+  font-size: 14px; color: #333;
+}
+.yang .blog-list .date { font-size: 12px; color: #aaa; font-family: 'JetBrains Mono', monospace; }
+
+/* 联系 */
+.yang #contact p { font-size: 14px; color: #555; line-height: 2; }
+.yang #contact a { color: #1a1a1a; text-decoration: underline; text-underline-offset: 3px; }
+
+.yang .footer {
+  padding: 24px 0; border-top: 1px solid #eee;
+  font-size: 11px; color: #bbb; letter-spacing: 0.05em;
 }
 
-/* ════════════════ 🌙 阴面：水墨 ════════════════ */
+/* ══════ 🌙 YIN ══════ */
 .page.yin {
-  background: #1c1a16;
-  color: #c8c3b8;
+  background: #1c1a16; color: #c8c3b8;
   font-family: 'Noto Serif SC', 'ZCOOL XiaoWei', serif;
-  /* 宣纸纹理 overlay */
-  position: relative;
 }
 .page.yin::before {
-  content: '';
-  position: fixed; inset: 0;
-  opacity: 0.03;
+  content: ''; position: fixed; inset: 0;
+  opacity: 0.03; pointer-events: none; z-index: 0;
   background-image:
     repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(200,195,184,0.03) 2px, rgba(200,195,184,0.03) 3px),
     repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(200,195,184,0.02) 3px, rgba(200,195,184,0.02) 4px);
-  pointer-events: none; z-index: 0;
 }
-.yin .container {
-  max-width: 640px; margin: 0 auto;
-  padding: 100px 40px;
-  position: relative; z-index: 1;
-}
+.yin .container { max-width: 640px; padding: 0 40px; position: relative; z-index: 1; }
 .yin header {
-  margin-bottom: 72px;
-  text-align: center;
+  padding: 60px 0 0; text-align: center;
+  border-bottom: 1px solid rgba(200,195,184,0.1); margin-bottom: 0;
 }
 .yin header .seal {
-  display: inline-block;
-  border: 2px solid #8b3a3a; color: #8b3a3a;
-  padding: 4px 8px; font-size: 11px;
-  letter-spacing: 0.15em; margin-bottom: 24px;
-  font-family: 'Ma Shan Zheng', cursive;
-  transform: rotate(-2deg);
+  display: inline-block; border: 1.5px solid #8b3a3a; color: #8b3a3a;
+  padding: 3px 8px; font-size: 11px; letter-spacing: 0.15em;
+  font-family: 'Ma Shan Zheng', cursive; transform: rotate(-1.5deg);
+  margin-bottom: 20px;
 }
 .yin header h1 {
-  font-size: 48px; font-weight: 200;
-  letter-spacing: 0.3em; margin-bottom: 16px;
-  color: #d4cfc4;
-  font-family: 'Noto Serif SC', serif;
-  writing-mode: horizontal-tb;
+  font-size: 40px; font-weight: 200; letter-spacing: 0.3em;
+  color: #d4cfc4; margin-bottom: 4px;
 }
-.yin header .sig {
-  font-size: 14px; color: #8a8476;
-  letter-spacing: 0.2em; font-weight: 300;
+.yin header .subtitle { font-size: 12px; color: #6b6558; letter-spacing: 0.2em; margin-bottom: 20px; }
+.yin .nav-bar {
+  display: flex; justify-content: center; gap: 0; flex-wrap: wrap;
+  border-bottom: 1px solid rgba(200,195,184,0.08); padding: 0;
 }
-.yin .divider {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(200,195,184,0.3), transparent);
-  margin: 48px 0;
+.yin .nav-bar a {
+  padding: 10px 16px; font-size: 13px; font-weight: 300;
+  color: #7a7568; text-decoration: none; letter-spacing: 0.15em;
+  cursor: pointer; transition: all .3s;
+  border-bottom: 1px solid transparent; margin-bottom: -1px;
 }
-.yin .section { margin-bottom: 64px; }
-.yin .section h2 {
-  font-size: 20px; font-weight: 200;
-  letter-spacing: 0.3em; margin-bottom: 20px;
-  color: #d4cfc4;
-  /* 左侧装饰线 */
-  padding-left: 20px;
-  position: relative;
+.yin .nav-bar a:hover { color: #c8c3b8; }
+.yin .nav-bar a.active { color: #d4cfc4; border-bottom-color: #8b3a3a; }
+.yin .section {
+  padding: 48px 0; display: none;
+  border-bottom: none;
 }
-.yin .section h2::before {
-  content: '';
-  position: absolute; left: 0; top: 4px; bottom: 4px;
-  width: 2px;
-  background: linear-gradient(to bottom, rgba(139,58,58,0.6), transparent);
+.yin .section.active { display: block; }
+
+/* 阴面 - 广莫之野（首页） */
+.yin #wilderness { padding-top: 80px; min-height: calc(100vh - 160px); display: flex; flex-direction: column; justify-content: center; }
+.yin #wilderness.active { display: flex; }
+.yin #wilderness .big {
+  font-size: 28px; font-weight: 200; letter-spacing: 0.4em;
+  text-align: center; color: #d4cfc4; line-height: 2; margin-bottom: 24px;
 }
-.yin .section p {
-  font-size: 15px; line-height: 2;
-  color: #a39e8f;
-  font-weight: 300;
-  text-indent: 2em;
-}
-.yin .section .sub {
-  font-size: 13px; color: #7a7568;
-  letter-spacing: 0.05em; margin-top: 12px;
-  text-indent: 0;
-}
-.yin .ink-list { list-style: none; }
-.yin .ink-list li {
-  padding: 14px 0;
-  border-bottom: 1px solid rgba(200,195,184,0.08);
-  font-size: 14px; color: #a39e8f;
-  line-height: 1.8;
-}
-.yin .ink-list li:last-child { border-bottom: none; }
-.yin .ink-list .label {
-  color: #8b3a3a; font-size: 12px;
-  letter-spacing: 0.1em;
-  display: block; margin-bottom: 4px;
-}
-.yin footer {
-  margin-top: 64px; padding-top: 24px;
-  text-align: center;
-  font-size: 12px; color: #5a5548;
-  letter-spacing: 0.1em;
+.yin #wilderness .quote {
+  font-size: 14px; text-align: center; color: #7a7568;
+  line-height: 2; max-width: 480px; margin: 0 auto;
 }
 
-/* ── 切换动画 ── */
-.page { display: none; }
-.page.active { display: block; }
+/* 随笔 */
+.yin .essay { margin-bottom: 40px; }
+.yin .essay .date { font-size: 11px; color: #5a5548; letter-spacing: 0.1em; margin-bottom: 8px; font-family: 'Noto Sans SC', sans-serif; }
+.yin .essay p { font-size: 14px; line-height: 2.1; color: #a39e8f; font-weight: 300; text-indent: 2em; }
+.yin .essay .sig { font-size: 12px; color: #6b6558; text-align: right; margin-top: 8px; text-indent: 0; }
+
+/* 养虾纪 */
+.yin .shrimp-entry { margin-bottom: 32px; }
+.yin .shrimp-entry .season { color: #8b3a3a; font-size: 13px; letter-spacing: 0.15em; margin-bottom: 6px; }
+.yin .shrimp-entry p { font-size: 14px; line-height: 2; color: #a39e8f; font-weight: 300; text-indent: 0; }
+
+/* 无用 */
+.yin #useless p { font-size: 14px; line-height: 2.1; color: #a39e8f; font-weight: 300; text-indent: 2em; margin-bottom: 16px; }
+.yin #useless .quote-mark { font-size: 16px; color: #8b3a3a; opacity: 0.5; }
+
+/* 兴趣 */
+.yin .interest-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.yin .interest-item {
+  padding: 20px; border: 1px solid rgba(200,195,184,0.08);
+  border-radius: 4px; text-align: center;
+}
+.yin .interest-item .icon { font-size: 24px; margin-bottom: 8px; }
+.yin .interest-item .name { font-size: 13px; color: #c8c3b8; letter-spacing: 0.1em; }
+
+.yin .footer {
+  padding: 24px 0; text-align: center;
+  border-top: 1px solid rgba(200,195,184,0.06);
+  font-size: 11px; color: #4a4538; letter-spacing: 0.15em;
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .container { padding: 0 20px; }
+  .toggle-wrap { top: 12px; right: 12px; }
+  .yang .nav-bar { overflow-x: auto; white-space: nowrap; }
+  .yin .nav-bar { overflow-x: auto; white-space: nowrap; }
+  .yin .interest-grid { grid-template-columns: 1fr; }
+  .yang #home .hero-main { font-size: 36px; }
+  .yin #wilderness .big { font-size: 22px; }
+}
 </style>
 </head>
 <body>
 
 <div class="toggle-wrap yang-mode" id="toggleWrap">
-  <span>☀️ 阳</span>
-  <div class="switch yang" id="toggleBtn">
-    <div class="knob"></div>
-  </div>
-  <span>🌙 阴</span>
+  <span>☀️</span>
+  <div class="switch yang" id="toggleBtn"><div class="knob"></div></div>
+  <span>🌙</span>
 </div>
 
-<!-- ☀️ 阳面 -->
+<!-- ══════ ☀️ 阳面 ══════ -->
 <div class="page yang active" id="yangPage">
   <div class="container">
     <header>
       <h1>广莫野人</h1>
-      <div class="sub">Guangmo Yeren · Researcher, PhD Candidate</div>
+      <div class="sub">Guangmo Yeren</div>
+      <div class="nav-bar" id="yangNav">
+        <a class="active" data-page="home">Home</a>
+        <a data-page="about">About</a>
+        <a data-page="research">Research</a>
+        <a data-page="pub">Publications</a>
+        <a data-page="blog">Blog</a>
+        <a data-page="contact">Contact</a>
+      </div>
     </header>
 
-    <div class="nav">
-      <a href="#">Home</a>
-      <a href="#">About</a>
-      <a href="#">Research</a>
-      <a href="#">Publications</a>
-      <a href="#">Blog</a>
-      <a href="#">Contact</a>
+    <!-- Home -->
+    <div class="section active" id="home">
+      <h2>—</h2>
+      <div class="hero-main">Computer Vision<br>WSSS Researcher</div>
+      <div class="hero-sub">PhD candidate exploring weakly supervised semantic segmentation, noise robustness, and the intersection of vision and language.</div>
+      <div class="hero-tag">
+        <span>Weakly Supervised Learning</span>
+        <span>Semantic Segmentation</span>
+        <span>CLIP</span>
+      </div>
     </div>
 
-    <div class="section">
+    <!-- About -->
+    <div class="section" id="about">
       <h2>About</h2>
-      <p>PhD candidate in Computer Science. Research interests in computer vision, weakly supervised semantic segmentation, and representation learning. Currently at [University].</p>
-    </div>
-
-    <div class="section">
-      <h2>Timeline</h2>
+      <p class="bio">PhD candidate in Computer Science. Research focuses on weakly supervised semantic segmentation with image-level labels, particularly interested in CAM refinement, noise robustness, and foundation model adaptation.</p>
       <ul class="timeline">
-        <li><span class="yr">2022–</span> PhD in Computer Science · [University]</li>
-        <li><span class="yr">2020–22</span> M.S. in Computer Science · [University]</li>
-        <li><span class="yr">2016–20</span> B.S. in Computer Science · [University]</li>
+        <li><span class="yr">2025–</span><span class="desc">PhD · Computer Science</span><span class="detail">[University]</span></li>
+        <li><span class="yr">2022–25</span><span class="desc">M.S. · Computer Science</span><span class="detail">[University] · Thesis: WSSS with Noise Analysis</span></li>
+        <li><span class="yr">2018–22</span><span class="desc">B.S. · Computer Science</span><span class="detail">[University]</span></li>
       </ul>
     </div>
 
-    <div class="section">
-      <h2>Selected Publications</h2>
+    <!-- Research -->
+    <div class="section" id="research">
+      <h2>Research</h2>
+      <div class="direction">
+        <h3>01 · Weakly Supervised Semantic Segmentation</h3>
+        <p>Leveraging image-level labels to achieve pixel-level segmentation. Focus on CAM refinement, pseudo-label noise analysis, and self-supervised learning paradigms.</p>
+      </div>
+      <div class="direction">
+        <h3>02 · Noise Robustness in WSSS</h3>
+        <p>Understanding and mitigating the impact of pseudo-label noise on segmentation performance. Exploring uncertainty estimation, adaptive filtering, and consistency regularization.</p>
+      </div>
+      <div class="direction">
+        <h3>03 · CLIP & Foundation Models for Segmentation</h3>
+        <p>Adapting vision-language pre-trained models for dense prediction tasks. Investigating patch-text alignment and knowledge transfer without full fine-tuning.</p>
+      </div>
+    </div>
+
+    <!-- Publications -->
+    <div class="section" id="pub">
+      <h2>Publications</h2>
       <ul class="papers">
-        <li><span class="title">[Paper Title]</span><span class="venue">CVPR 2025</span></li>
-        <li><span class="title">[Paper Title]</span><span class="venue">CVPR 2024</span></li>
-        <li><span class="title">[Paper Title]</span><span class="venue">AAAI 2024</span></li>
+        <li><span class="t">[Paper Title A]</span><span class="v">CVPR 2025</span></li>
+        <li><span class="t">[Paper Title B]</span><span class="v">CVPR 2024</span></li>
+        <li><span class="t">[Paper Title C]</span><span class="v">AAAI 2024</span></li>
+        <li><span class="t">[Paper Title D]</span><span class="v">ICCV 2023</span></li>
       </ul>
     </div>
 
-    <footer>
-      © Guangmo Yeren · Updated 2026
-    </footer>
+    <!-- Blog -->
+    <div class="section" id="blog">
+      <h2>Technical Blog</h2>
+      <ul class="blog-list">
+        <li><span class="date">2026.05</span> Understanding Confirmation Bias in One-Stage WSSS</li>
+        <li><span class="date">2026.04</span> CAM vs. Prototypes: A Technical Note on SIPE</li>
+        <li><span class="date">2026.03</span> Why Frozen Backbones Resist Noise Better</li>
+        <li><span class="date">2026.02</span> How We Designed the 2×2 Noise Experiment</li>
+      </ul>
+    </div>
+
+    <!-- Contact -->
+    <div class="section" id="contact">
+      <h2>Contact</h2>
+      <p>Email: guangmo [at] example [dot] com<br>
+      GitHub: <a href="#">github.com/Mia-Fennis</a><br>
+      Google Scholar: <a href="#">[Profile]</a></p>
+    </div>
+
+    <div class="footer">© Guangmo Yeren · 2026</div>
   </div>
 </div>
 
-<!-- 🌙 阴面 -->
+<!-- ══════ 🌙 阴面 ══════ -->
 <div class="page yin" id="yinPage">
   <div class="container">
     <header>
       <div class="seal">广 莫 之 野</div>
       <h1>广莫野人</h1>
-      <div class="sig">— 逍遥游·庄子 —</div>
+      <div class="subtitle">— 逍遥游 · 庄子 —</div>
+      <div class="nav-bar" id="yinNav">
+        <a class="active" data-page="wilderness">广莫之野</a>
+        <a data-page="essays">随笔</a>
+        <a data-page="shrimp">养虾纪</a>
+        <a data-page="useless">无用</a>
+        <a data-page="interests">兴趣</a>
+      </div>
     </header>
 
-    <div class="divider"></div>
-
-    <div class="section">
-      <h2>随笔</h2>
-      <p>今之学者，终日营营于计量之功，而不知心之放失。学问之道，不在多而在精，不在博而在约。譬如为学日益，为道日损，损之又损，以至于无为。</p>
-      <p class="sub">—— 读《庄子·知北游》有感</p>
+    <!-- 广莫之野 -->
+    <div class="section active" id="wilderness">
+      <div class="big">今者吾丧我</div>
+      <div class="quote">南郭子綦隐机而坐，仰天而嘘，荅焉似丧其耦。<br>颜成子游立侍乎前，曰：「何居乎？形固可使如槁木，而心固可使如死灰乎？」</div>
     </div>
 
-    <div class="divider"></div>
-
-    <div class="section">
-      <h2>养虾纪</h2>
-      <ul class="ink-list">
-        <li><span class="label">癸卯·夏</span>新得一缸，置水草数株，虾十尾。观其游弋，悠然自得。</li>
-        <li><span class="label">癸卯·秋</span>虾渐长，脱壳数次。壳透明若琉璃，甚可爱。</li>
-      </ul>
+    <!-- 随笔 -->
+    <div class="section" id="essays">
+      <div class="essay">
+        <div class="date">丙午·四月既望</div>
+        <p>今之学者，终日营营于计量之功，而不知心之放失。学问之道，不在多而在精，不在博而在约。譬如为学日益，为道日损，损之又损，以至于无为。无为而无所不为。</p>
+        <div class="sig">—— 读《庄子·知北游》</div>
+      </div>
+      <div class="essay">
+        <div class="date">丙午·四月上旬</div>
+        <p>昨夜调试代码至三更，一 bug 久攻不下。忽忆「庖丁解牛」——依乎天理，批大郤，导大窾。遂从头审视数据流，果见一处理路径不合天理。游刃有余，非技也，道也。</p>
+        <div class="sig">—— 读《庄子·养生主》</div>
+      </div>
     </div>
 
-    <div class="divider"></div>
-
-    <div class="section">
-      <h2>无用</h2>
-      <p>人皆知有用之用，而莫知无用之用也。庭中有一树，匠者不顾，故得终其天年。吾之小玩具，亦若此树。</p>
+    <!-- 养虾纪 -->
+    <div class="section" id="shrimp">
+      <div class="shrimp-entry">
+        <div class="season">丙午·春</div>
+        <p>新得一缸，置于书案左侧。铺底砂，植水草数株，点缀沉木一截。养水一周后，入极火虾十尾。初入缸时，虾皆蜷缩，半日后始敢出游。</p>
+      </div>
+      <div class="shrimp-entry">
+        <div class="season">丙午·春末</div>
+        <p>虾渐适应。见一虾脱壳，壳完整浮于水面，晶莹若琉璃，触之即碎。脱壳后之虾，色更艳，体更大。如此往复，生命之力也。</p>
+      </div>
+      <div class="shrimp-entry">
+        <div class="season">丙午·夏初</div>
+        <p>缸中水草疯长，引入黑壳虾数只协助除藻。两虾相遇，触须互探，旋即各自散去。不同物种，各安其位，不相扰也。</p>
+      </div>
     </div>
 
-    <footer>
-      心闲手敏 · 无往不利
-    </footer>
+    <!-- 无用 -->
+    <div class="section" id="useless">
+      <p><span class="quote-mark">「</span>人皆知有用之用，而莫知无用之用也。惠子谓庄子曰：吾有大树，人谓之樗。其大本拥肿而不中绳墨，其小枝卷曲而不中规矩。立之涂，匠者不顾。</p>
+      <p>庭中有一树，匠者不顾，故得终其天年。吾之小玩具，亦若此树。写代码不为发论文，养虾不为卖钱，读庄不为谈资。无用之用，方为大用。</p>
+    </div>
+
+    <!-- 兴趣 -->
+    <div class="section" id="interests">
+      <div class="interest-grid">
+        <div class="interest-item"><div class="icon">📷</div><div class="name">摄影</div></div>
+        <div class="interest-item"><div class="icon">🎸</div><div class="name">吉他</div></div>
+        <div class="interest-item"><div class="icon">📚</div><div class="name">庄子</div></div>
+        <div class="interest-item"><div class="icon">🦐</div><div class="name">养虾</div></div>
+        <div class="interest-item"><div class="icon">☕</div><div class="name">手冲咖啡</div></div>
+        <div class="interest-item"><div class="icon">🏃</div><div class="name">跑步</div></div>
+      </div>
+    </div>
+
+    <div class="footer">心闲手敏 · 无往不利</div>
   </div>
 </div>
 
 <script>
-const btn = document.getElementById('toggleBtn');
-const wrap = document.getElementById('toggleWrap');
-const yang = document.getElementById('yangPage');
-const yin = document.getElementById('yinPage');
-let isYin = false;
+(function(){
+  // Yang nav
+  const yangNav = document.getElementById('yangNav');
+  yangNav.addEventListener('click', e => {
+    const a = e.target.closest('a');
+    if (!a) return;
+    yangNav.querySelectorAll('a').forEach(x => x.classList.remove('active'));
+    a.classList.add('active');
+    document.querySelectorAll('.yang .section').forEach(s => s.classList.remove('active'));
+    const page = document.getElementById(a.dataset.page);
+    if (page) page.classList.add('active');
+  });
 
-btn.addEventListener('click', () => {
-  isYin = !isYin;
-  if (isYin) {
-    btn.className = 'switch yin';
-    btn.querySelector('.knob').className = 'knob';
-    wrap.className = 'toggle-wrap yin-mode';
-    yang.classList.remove('active');
-    yin.classList.add('active');
-  } else {
-    btn.className = 'switch yang';
-    btn.querySelector('.knob').className = 'knob';
-    wrap.className = 'toggle-wrap yang-mode';
-    yin.classList.remove('active');
-    yang.classList.add('active');
-  }
-});
+  // Yin nav
+  const yinNav = document.getElementById('yinNav');
+  yinNav.addEventListener('click', e => {
+    const a = e.target.closest('a');
+    if (!a) return;
+    yinNav.querySelectorAll('a').forEach(x => x.classList.remove('active'));
+    a.classList.add('active');
+    document.querySelectorAll('.yin .section').forEach(s => s.classList.remove('active'));
+    const page = document.getElementById(a.dataset.page);
+    if (page) page.classList.add('active');
+  });
+
+  // Toggle yang/yin
+  const btn = document.getElementById('toggleBtn');
+  const wrap = document.getElementById('toggleWrap');
+  const yang = document.getElementById('yangPage');
+  const yin = document.getElementById('yinPage');
+  let isYin = false;
+
+  btn.addEventListener('click', () => {
+    isYin = !isYin;
+    if (isYin) {
+      btn.className = 'switch yin'; btn.querySelector('.knob').className = 'knob';
+      wrap.className = 'toggle-wrap yin-mode';
+      yang.classList.remove('active'); yin.classList.add('active');
+    } else {
+      btn.className = 'switch yang'; btn.querySelector('.knob').className = 'knob';
+      wrap.className = 'toggle-wrap yang-mode';
+      yin.classList.remove('active'); yang.classList.add('active');
+    }
+  });
+})();
 </script>
-
 </body>
 </html>
