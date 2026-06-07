@@ -344,10 +344,10 @@
   <div class="container">
     <header>
       <div class="name-row">
-        <h1><span class="zh-name">吴昊</span><span class="en-name" style="display:none">Hao Wu</span></h1>
+        <h1><span class="zh-name" style="display:none">吴昊</span><span class="en-name">Hao Wu</span></h1>
         <span class="lang-toggle" id="langToggle"><span class="lang-en active">EN</span><span class="lang-divider">/</span><span class="lang-zh">中</span></span>
       </div>
-      <div class="sub">Hao Wu</div>
+      <div class="sub" data-en="Hao Wu" data-zh="吴昊">Hao Wu</div>
       <div class="nav-bar" id="yangNav">
         <a class="active" data-page="home" data-en="Home" data-zh="首页">Home</a>
         <a data-page="about" data-en="About" data-zh="关于">About</a>
@@ -950,25 +950,7 @@ const yang = document.getElementById('yangPage');
 const yin = document.getElementById('yinPage');
 let mode = 'yang';
 
-// ── Language Toggle (Yang side only) ──
-let currentLang = 'en'; // 默认英文（页面内容本来就是英文）
-const langBtn = document.getElementById('langToggle');
-
-function setLang(lang) {
-  currentLang = lang;
-  // 更新按钮文字
-  langBtn.textContent = lang === 'en' ? '中' : 'EN';
-  // 遍历所有带 data-en / data-zh 的元素
-  document.querySelectorAll('.yang [data-en]').forEach(el => {
-    el.innerHTML = el.getAttribute('data-' + lang);
-  });
-}
-
-langBtn.addEventListener('click', () => {
-  setLang(currentLang === 'en' ? 'zh' : 'en');
-});
-
-// Yang/Yin 切换 — 带过渡特效
+// ── Yang/Yin 切换 — 带过渡特效
 let transitioning = false;
 taijiBtn.addEventListener('click', () => {
   if (transitioning) return;
@@ -1003,20 +985,25 @@ taijiBtn.addEventListener('click', () => {
 });
 
 // ── Language Toggle ──
+let currentLang = 'en';
 const langToggle = document.getElementById('langToggle');
-let lang = 'en';
+
 langToggle.addEventListener('click', () => {
-  lang = lang === 'en' ? 'zh' : 'en';
+  currentLang = currentLang === 'en' ? 'zh' : 'en';
+  // 更新按钮高亮
   langToggle.querySelectorAll('span').forEach(s => s.classList.remove('active'));
-  if (lang === 'en') {
+  if (currentLang === 'en') {
     langToggle.querySelector('.lang-en').classList.add('active');
-    document.querySelector('.zh-name').style.display = 'none';
-    document.querySelector('.en-name').style.display = '';
   } else {
     langToggle.querySelector('.lang-zh').classList.add('active');
-    document.querySelector('.zh-name').style.display = '';
-    document.querySelector('.en-name').style.display = 'none';
   }
+  // 切换中英文名
+  document.querySelector('.zh-name').style.display = currentLang === 'en' ? 'none' : '';
+  document.querySelector('.en-name').style.display = currentLang === 'en' ? '' : 'none';
+  // 遍历所有带 data-en / data-zh 的元素
+  document.querySelectorAll('.yang [data-en]').forEach(el => {
+    el.innerHTML = el.getAttribute('data-' + currentLang);
+  });
 });
 </script>
 </body>
