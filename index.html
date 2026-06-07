@@ -65,11 +65,11 @@
 .yang #home { padding-top: 100px; min-height: calc(100vh - 160px); display: flex; flex-direction: column; justify-content: center; }
 .yang #home.active { display: flex; }
 .yang #home h2 { display: none; }
-.yang #home .hero-main { font-size: 56px; font-weight: 200; letter-spacing: -0.04em; line-height: 1.2; margin-bottom: 16px; }
-.yang #home .hero-sub { font-size: 16px; color: #666; max-width: 500px; line-height: 1.6; font-weight: 300; }
+.yang #home .hero-main { font-size: 56px; font-weight: 200; letter-spacing: -0.04em; line-height: 1.2; margin-bottom: 16px; min-height: 140px; }
+.yang #home .hero-sub { font-size: 16px; color: #666; max-width: 500px; line-height: 1.6; font-weight: 300; min-height: 80px; }
 .yang #home .hero-tag { margin-top: 32px; display: flex; gap: 16px; font-size: 12px; color: #999; flex-wrap: wrap; }
 .yang #home .hero-tag span { padding: 4px 12px; border: 1px solid #ddd; border-radius: 20px; }
-.yang #about .bio { font-size: 14px; line-height: 1.9; color: #444; max-width: 600px; margin-bottom: 32px; }
+.yang #about .bio { font-size: 14px; line-height: 1.9; color: #444; max-width: 600px; margin-bottom: 32px; min-height: 80px; }
 .yang .timeline { list-style: none; }
 .yang .timeline li { padding: 14px 0; border-bottom: 1px solid #eee; font-size: 13px; color: #555; display: flex; gap: 20px; align-items: baseline; }
 .yang .timeline .yr { color: #aaa; min-width: 55px; font-family: 'JetBrains Mono', monospace; font-size: 12px; }
@@ -347,7 +347,7 @@
         <h1><span class="zh-name" style="display:none">吴昊</span><span class="en-name">Hao Wu</span></h1>
         <span class="lang-toggle" id="langToggle"><span class="lang-en active">EN</span><span class="lang-divider">/</span><span class="lang-zh">中</span></span>
       </div>
-      <div class="sub" data-en="Hao Wu" data-zh="吴昊">Hao Wu</div>
+      <div class="sub" data-en="PhD Candidate" data-zh="博士研究生">PhD Candidate</div>
       <div class="nav-bar" id="yangNav">
         <a class="active" data-page="home" data-en="Home" data-zh="首页">Home</a>
         <a data-page="about" data-en="About" data-zh="关于">About</a>
