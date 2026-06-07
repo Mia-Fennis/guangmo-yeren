@@ -69,19 +69,14 @@
 .yang #home .avatar-frame {
   width: 120px; height: 120px;
   border-radius: 50%;
-  border: 2px dashed #ccc;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  overflow: hidden;
   margin-bottom: 28px;
   flex-shrink: 0;
-  transition: border-color .3s;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.06);
 }
-.yang #home .avatar-frame:hover { border-color: #999; }
-.yang #home .avatar-frame .initials {
-  font-size: 36px; color: #ccc; font-weight: 200;
-  font-family: 'Inter', sans-serif;
-  letter-spacing: 0.05em;
+.yang #home .avatar-frame img {
+  width: 100%; height: 100%;
+  object-fit: cover;
 }
 .yang #home .hero-sub { font-size: 16px; color: #666; max-width: 500px; line-height: 1.6; font-weight: 300; min-height: 80px; }
 .yang #home .hero-tag { margin-top: 32px; display: flex; gap: 16px; font-size: 12px; color: #999; flex-wrap: wrap; }
@@ -378,7 +373,7 @@
     <div class="section active" id="home">
       <h2>—</h2>
       <div class="avatar-frame">
-        <span class="initials" data-en="H" data-zh="昊">H</span>
+        <img src="assets/avatar.jpg" alt="Hao Wu">
       </div>
       <div class="hero-main" data-en="Computer Vision<br>WSSS Researcher" data-zh="计算机视觉<br>弱监督语义分割">Computer Vision<br>WSSS Researcher</div>
       <div class="hero-sub" data-en="PhD candidate researching computer vision, weakly supervised semantic segmentation, noisy label learning, and vision-language models." data-zh="博士研究生，研究方向为计算机视觉、弱监督语义分割、噪声标签学习、视觉语言大模型。">PhD candidate researching computer vision, weakly supervised semantic segmentation, noisy label learning, and vision-language models.</div>
