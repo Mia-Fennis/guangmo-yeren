@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>广莫野人 · 阴阳双面</title>
+<title>吴昊 · Hao Wu</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,200;14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Noto+Serif+SC:wght@200;300;400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;600;700&family=Ma+Shan+Zheng&family=ZCOOL+XiaoWei&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
@@ -48,6 +48,12 @@
 .yang header { padding: 60px 0 0; border-bottom: 1px solid #1a1a1a; margin-bottom: 0; }
 .yang header h1 { font-size: 38px; font-weight: 200; letter-spacing: -0.03em; margin-bottom: 4px; font-family: 'Inter', sans-serif; }
 .yang header .sub { font-size: 13px; color: #888; font-weight: 400; margin-bottom: 24px; letter-spacing: 0.02em; }
+.yang .name-row { display: flex; align-items: baseline; gap: 16px; }
+.yang .name-row h1 { margin-bottom: 0; }
+.yang .lang-toggle { font-size: 11px; color: #bbb; cursor: pointer; user-select: none; letter-spacing: 0.05em; font-weight: 400; }
+.yang .lang-toggle span { transition: color .15s; }
+.yang .lang-toggle span.active { color: #888; }
+.yang .lang-toggle span:hover { color: #555; }
 .yang .nav-bar { display: flex; gap: 0; border-bottom: 1px solid #ddd; }
 .yang .nav-bar a { padding: 10px 18px; font-size: 12px; font-weight: 400; color: #888; text-decoration: none; letter-spacing: 0.06em; border-bottom: 2px solid transparent; margin-bottom: -1px; cursor: pointer; transition: all .15s; }
 .yang .nav-bar a:hover { color: #1a1a1a; }
@@ -337,8 +343,11 @@
 <div class="page yang active" id="yangPage">
   <div class="container">
     <header>
-      <h1>广莫野人</h1>
-      <div class="sub">Guangmo Yeren <span class="lang-inline" id="langToggle">EN</span></div>
+      <div class="name-row">
+        <h1><span class="zh-name">吴昊</span><span class="en-name" style="display:none">Hao Wu</span></h1>
+        <span class="lang-toggle" id="langToggle"><span class="lang-en active">EN</span><span class="lang-divider">/</span><span class="lang-zh">中</span></span>
+      </div>
+      <div class="sub">Hao Wu</div>
       <div class="nav-bar" id="yangNav">
         <a class="active" data-page="home" data-en="Home" data-zh="首页">Home</a>
         <a data-page="about" data-en="About" data-zh="关于">About</a>
@@ -990,6 +999,23 @@ taijiBtn.addEventListener('click', () => {
       mode = 'yang';
       transitioning = false;
     });
+  }
+});
+
+// ── Language Toggle ──
+const langToggle = document.getElementById('langToggle');
+let lang = 'en';
+langToggle.addEventListener('click', () => {
+  lang = lang === 'en' ? 'zh' : 'en';
+  langToggle.querySelectorAll('span').forEach(s => s.classList.remove('active'));
+  if (lang === 'en') {
+    langToggle.querySelector('.lang-en').classList.add('active');
+    document.querySelector('.zh-name').style.display = 'none';
+    document.querySelector('.en-name').style.display = '';
+  } else {
+    langToggle.querySelector('.lang-zh').classList.add('active');
+    document.querySelector('.zh-name').style.display = '';
+    document.querySelector('.en-name').style.display = 'none';
   }
 });
 </script>
