@@ -103,6 +103,9 @@
 .yang .blog-list .date { font-size: 12px; color: #aaa; font-family: 'JetBrains Mono', monospace; }
 .yang #contact p { font-size: 14px; color: #555; line-height: 2; }
 .yang #contact a { color: #1a1a1a; text-decoration: underline; text-underline-offset: 3px; }
+.yang #contact .contact-grid { display: flex; gap: 60px; margin-top: 20px; }
+.yang #contact .contact-col { flex: 1; }
+.yang #contact .contact-col h3 { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: #bbb; margin-bottom: 12px; }
 .yang .footer { padding: 24px 0; border-top: 1px solid #eee; font-size: 11px; color: #bbb; letter-spacing: 0.05em; }
 
 /* ══════ 🌙 YIN — 山水四季 ══════ */
@@ -439,8 +442,21 @@
     <div class="section" id="contact">
       <h2 data-en="Contact" data-zh="联系">Contact</h2>
       <p data-en="For research collaboration and academic discussion, feel free to reach out." data-zh="欢迎学术交流与合作探讨，欢迎联系。">For research collaboration and academic discussion, feel free to reach out.</p>
-      <p style="margin-top:20px;">Email: b19010614@njupt.edu.cn<br>GitHub: <a href="https://github.com/Mia-Fennis">github.com/Mia-Fennis</a><br><span data-en="Google Scholar: Coming soon" data-zh="谷歌学术：待更新">Google Scholar: Coming soon</span></p>
-      <div class="wechat-section" style="margin-top:28px;">
+      <div class="contact-grid">
+        <div class="contact-col">
+          <h3 data-en="Personal" data-zh="个人">Personal</h3>
+          <p>Email: b19010614@njupt.edu.cn<br>
+          GitHub: <a href="https://github.com/Mia-Fennis">github.com/Mia-Fennis</a><br>
+          <span data-en="Google Scholar: Coming soon" data-zh="谷歌学术：待更新">Google Scholar: Coming soon</span></p>
+        </div>
+        <div class="contact-col">
+          <h3 data-en="Advisor" data-zh="导师">Advisor</h3>
+          <p data-en="Prof. Zhou Quan" data-zh="周全 教授">Prof. Zhou Quan</p>
+          <p>Email: quan.zhou@njupt.edu.cn<br>
+          <a href="https://njupt-quanzhou.github.io/quanzhou.github.io/index.html">njupt-quanzhou.github.io</a></p>
+        </div>
+      </div>
+      <div class="wechat-section" style="margin-top:32px;">
         <p style="font-size:12px; color:#999; margin-bottom:8px;" data-en="WeChat" data-zh="微信">WeChat</p>
         <img src="assets/wechat-qr.png" alt="WeChat QR" style="width:120px; height:auto; border-radius:4px; border:1px solid #eee;">
         <p style="font-size:11px; color:#bbb; margin-top:8px; max-width:260px; line-height:1.6;" data-en="Please state your purpose when adding. Academic discussions preferred. No ads or spam, thank you." data-zh="添加好友请说明来意，学术交流优先。谢绝广告与骚扰，见谅。">Please state your purpose when adding. Academic discussions preferred. No ads or spam, thank you.</p>
