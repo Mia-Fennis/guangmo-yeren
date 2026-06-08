@@ -63,15 +63,13 @@
 .yang .section.active { display: block; }
 .yang .section h2 { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: #aaa; margin-bottom: 24px; }
 .yang .section h3 { font-size: 20px; font-weight: 400; margin-bottom: 16px; }
-.yang #home { padding-top: 100px; min-height: calc(100vh - 160px); flex-direction: column; justify-content: center; }
+.yang #home { min-height: calc(100vh - 160px); flex-direction: row; align-items: center; justify-content: center; gap: 48px; }
 .yang #home.active { display: flex; }
 .yang #home h2 { display: none; }
-.yang #home .hero-main { font-size: 56px; font-weight: 200; letter-spacing: -0.04em; line-height: 1.2; margin-bottom: 16px; min-height: 140px; }
 .yang #home .avatar-frame {
-  width: 120px; height: 120px;
+  width: 150px; height: 150px;
   border-radius: 50%;
   overflow: hidden;
-  margin-bottom: 28px;
   flex-shrink: 0;
   box-shadow: 0 0 0 1px rgba(0,0,0,0.06);
 }
@@ -79,8 +77,10 @@
   width: 100%; height: 100%;
   object-fit: cover;
 }
+.yang #home .home-text { flex: 1; }
+.yang #home .hero-main { font-size: 56px; font-weight: 200; letter-spacing: -0.04em; line-height: 1.2; margin-bottom: 12px; min-height: 140px; }
 .yang #home .hero-sub { font-size: 16px; color: #666; max-width: 500px; line-height: 1.6; font-weight: 300; min-height: 80px; }
-.yang #home .hero-tag { margin-top: 32px; display: flex; gap: 16px; font-size: 12px; color: #999; flex-wrap: wrap; }
+.yang #home .hero-tag { margin-top: 24px; display: flex; gap: 12px; font-size: 12px; color: #999; flex-wrap: wrap; }
 .yang #home .hero-tag span { padding: 4px 12px; border: 1px solid #ddd; border-radius: 20px; }
 .yang #about .bio { font-size: 14px; line-height: 1.9; color: #444; max-width: 600px; margin-bottom: 32px; min-height: 80px; }
 .yang .timeline { list-style: none; }
@@ -323,7 +323,12 @@
   .container { padding: 0 20px; }
   .yang .nav-bar, .yin .nav-bar { overflow-x: auto; white-space: nowrap; }
   .yin .interest-grid { grid-template-columns: 1fr; }
-  .yang #home .hero-main { font-size: 36px; }
+  .yang #home { flex-direction: column; gap: 24px; text-align: center; }
+  .yang #home .avatar-frame { width: 120px; height: 120px; }
+  .yang #home .home-text { display: flex; flex-direction: column; align-items: center; }
+  .yang #home .hero-main { font-size: 36px; min-height: auto; }
+  .yang #home .hero-sub { max-width: 100%; min-height: auto; }
+  .yang #home .hero-tag { justify-content: center; }
   .yin #wilderness .big { font-size: 22px; }
 }
 </style>
@@ -376,12 +381,14 @@
       <div class="avatar-frame">
         <img src="assets/avatar.jpg" alt="Hao Wu">
       </div>
-      <div class="hero-main" data-en="Computer Vision<br>WSSS Researcher" data-zh="计算机视觉<br>弱监督语义分割">Computer Vision<br>WSSS Researcher</div>
-      <div class="hero-sub" data-en="PhD candidate researching computer vision, weakly supervised semantic segmentation, noisy label learning, and vision-language models." data-zh="博士研究生，研究方向为计算机视觉、弱监督语义分割、噪声标签学习、视觉语言大模型。">PhD candidate researching computer vision, weakly supervised semantic segmentation, noisy label learning, and vision-language models.</div>
-      <div class="hero-tag">
-        <span data-en="Weakly Supervised Learning" data-zh="弱监督学习">Weakly Supervised Learning</span>
-        <span data-en="Semantic Segmentation" data-zh="语义分割">Semantic Segmentation</span>
-        <span data-en="CLIP" data-zh="CLIP">CLIP</span>
+      <div class="home-text">
+        <div class="hero-main" data-en="Computer Vision<br>WSSS Researcher" data-zh="计算机视觉<br>弱监督语义分割">Computer Vision<br>WSSS Researcher</div>
+        <div class="hero-sub" data-en="PhD candidate researching computer vision, weakly supervised semantic segmentation, noisy label learning, and vision-language models." data-zh="博士研究生，研究方向为计算机视觉、弱监督语义分割、噪声标签学习、视觉语言大模型。">PhD candidate researching computer vision, weakly supervised semantic segmentation, noisy label learning, and vision-language models.</div>
+        <div class="hero-tag">
+          <span data-en="Weakly Supervised Learning" data-zh="弱监督学习">Weakly Supervised Learning</span>
+          <span data-en="Semantic Segmentation" data-zh="语义分割">Semantic Segmentation</span>
+          <span data-en="CLIP" data-zh="CLIP">CLIP</span>
+        </div>
       </div>
     </div>
     <!-- 关于 -->
