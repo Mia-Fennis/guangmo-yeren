@@ -83,7 +83,12 @@
 .yang #home .hero-tag { margin-top: 24px; display: flex; gap: 12px; font-size: 12px; color: #999; flex-wrap: wrap; }
 .yang #home .hero-tag span { padding: 4px 12px; border: 1px solid #ddd; border-radius: 20px; }
 .yang #about .bio { font-size: 14px; line-height: 1.9; color: #444; max-width: 600px; margin-bottom: 24px; min-height: 80px; }
-.yang #about .about-motto { margin-top: 24px; padding-top: 20px; border-top: 1px solid #eee; font-size: 13px; color: #999; font-style: italic; max-width: 600px; }
+.yang #about .honors-heading { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: #aaa; margin-top: 36px; margin-bottom: 16px; }
+.yang #about .honors-list { list-style: none; }
+.yang #about .honors-list li { padding: 8px 0; font-size: 13px; color: #555; display: flex; gap: 16px; align-items: baseline; border-bottom: 1px solid #f2f2f2; }
+.yang #about .honors-list li:last-child { border-bottom: none; }
+.yang #about .honors-list .award-name { flex: 1; }
+.yang #about .honors-list .award-year { font-size: 11px; color: #bbb; font-family: 'JetBrains Mono', monospace; white-space: nowrap; }
 .yang .timeline { list-style: none; }
 .yang .timeline li { padding: 14px 0; border-bottom: 1px solid #eee; font-size: 13px; color: #555; display: flex; gap: 20px; align-items: baseline; }
 .yang .timeline .yr { color: #aaa; min-width: 55px; font-family: 'JetBrains Mono', monospace; font-size: 12px; }
@@ -395,14 +400,24 @@
     <!-- 关于 -->
     <div class="section" id="about">
       <h2 data-en="About" data-zh="关于">About</h2>
-      <p class="bio" data-en="Wu Hao, Party member, undergraduate at NJUPT. Enlisted in 2020, returned in 2022 — a soldier-turned-scholar carrying military resilience into academic life." data-zh="吴昊，中共党员，南京邮电大学通信工程专业2022级本科生。2020年携笔从戎，2022年退役复学，从军营到校园，不变的是不服输的韧劲。">Wu Hao, Party member, undergraduate at NJUPT. Enlisted in 2020, returned in 2022 — a soldier-turned-scholar carrying military resilience into academic life.</p>
+      <p class="bio" data-en="Wu Hao, Party member. Enrolled at NJUPT in 2019 majoring in Communication Engineering, enlisted in 2020, returned in 2022, graduated with a B.S. in 2026, and will pursue a direct PhD in Information and Communication Engineering at NJUPT under Prof. Zhou Quan." data-zh="吴昊，中共党员，2019年入学南京邮电大学通信工程专业，2020年携笔从戎，2022年退役复学，2026年本科毕业，直博本校信息与通信工程专业，师从周全教授。">Wu Hao, Party member. Enrolled at NJUPT in 2019 majoring in Communication Engineering, enlisted in 2020, returned in 2022, graduated with a B.S. in 2026, and will pursue a direct PhD in Information and Communication Engineering at NJUPT under Prof. Zhou Quan.</p>
       <ul class="timeline">
-        <li><span class="yr">2024</span><span class="desc" data-en="National First-Class Scholarship · MCM M Award" data-zh="国家一等奖学金 · 美赛M奖">National First-Class Scholarship · MCM M Award</span><span class="detail" data-en="CUMCM Jiangsu 2nd Prize, University-level Innovation Program" data-zh="全国数模省二等奖，大创结项">CUMCM Jiangsu 2nd Prize, University-level Innovation Program</span></li>
-        <li><span class="yr">2023</span><span class="desc" data-en="Outstanding Student Leader · Military Instructor" data-zh="优秀学生干部 · 军训教官">Outstanding Student Leader · Military Instructor</span><span class="detail" data-en="Outstanding Instructor, Class Monitor of B220106" data-zh="优秀教官，B220106班班长">Outstanding Instructor, Class Monitor of B220106</span></li>
-        <li><span class="yr">2022</span><span class="desc" data-en="Honorable Discharge · NJUPT" data-zh="退役复学 · 南京邮电大学">Honorable Discharge · NJUPT</span><span class="detail" data-en="Returned as class monitor, served grade affairs" data-zh="任班长，协助年级事务">Returned as class monitor, served grade affairs</span></li>
-        <li><span class="yr">2020–22</span><span class="desc" data-en="Military Service · Eastern Theater Navy" data-zh="服役 · 东部战区海军">Military Service · Eastern Theater Navy</span><span class="detail" data-en="Outstanding Soldier with Four Virtues, Commendation" data-zh="四有优秀士兵，嘉奖">Outstanding Soldier with Four Virtues, Commendation</span></li>
+        <li><span class="yr">2022–26</span><span class="desc" data-en="B.S. Communication Engineering · NJUPT" data-zh="就读于南京邮电大学通信与信息工程学院">B.S. Communication Engineering · NJUPT</span><span class="detail" data-en="Class monitor, military instructor" data-zh="班长，军训教官">Class monitor, military instructor</span></li>
+        <li><span class="yr">2020–22</span><span class="desc" data-en="Military Service · PLA Eastern Theater Navy" data-zh="服役于中国人民解放军东部战区海军">Military Service · PLA Eastern Theater Navy</span><span class="detail" data-en="Outstanding Soldier, Commendation" data-zh="四有优秀士兵，嘉奖">Outstanding Soldier, Commendation</span></li>
+        <li><span class="yr">2019–20</span><span class="desc" data-en="Enrolled at NJUPT" data-zh="入学南京邮电大学通信与信息工程学院">Enrolled at NJUPT</span><span class="detail" data-en="Communication Engineering" data-zh="通信工程专业">Communication Engineering</span></li>
       </ul>
-      <div class="about-motto" data-en="Hard for others, hard for me — I don't fear difficulty. Easy for others, easy for me — I don't take it lightly." data-zh="人难我难我不畏难，人易我易我不大意。">人难我难我不畏难，人易我易我不大意。</div>
+      <h3 class="honors-heading" data-en="Honors &amp; Awards" data-zh="荣誉与奖项">Honors &amp; Awards</h3>
+      <ul class="honors-list">
+        <li><span class="award-name" data-en="National First-Class Scholarship" data-zh="国家一等奖学金">National First-Class Scholarship</span><span class="award-year">2024</span></li>
+        <li><span class="award-name" data-en="MCM/ICM — Meritorious Winner" data-zh="美国大学生数学建模竞赛M奖">MCM/ICM — Meritorious Winner</span><span class="award-year">2024</span></li>
+        <li><span class="award-name" data-en="Outstanding Student Leader" data-zh="优秀学生干部">Outstanding Student Leader</span><span class="award-year">2023</span></li>
+        <li><span class="award-name" data-en="Outstanding Instructor (Military Training)" data-zh="优秀教官">Outstanding Instructor (Military Training)</span><span class="award-year">2023</span></li>
+        <li><span class="award-name" data-en="Outstanding League Member" data-zh="优秀共青团员">Outstanding League Member</span><span class="award-year">2023</span></li>
+        <li><span class="award-name" data-en="Merit Student (三好学生)" data-zh="三好学生">Merit Student (三好学生)</span><span class="award-year">2023</span></li>
+        <li><span class="award-name" data-en="CUMCM Jiangsu Second Prize" data-zh="全国大学生数学建模竞赛江苏省二等奖">CUMCM Jiangsu Second Prize</span><span class="award-year">2023</span></li>
+        <li><span class="award-name" data-en="University Innovation &amp; Entrepreneurship Program (Completed)" data-zh="校级大创项目（结项）">University Innovation &amp; Entrepreneurship Program (Completed)</span><span class="award-year">2023–24</span></li>
+        <li><span class="award-name" data-en="Outstanding Soldier with Four Virtues" data-zh="四有优秀士兵">Outstanding Soldier with Four Virtues</span><span class="award-year">2021</span></li>
+      </ul>
     </div>
     <!-- 研究 -->
     <div class="section" id="research">
