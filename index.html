@@ -83,17 +83,14 @@
 .yang #home .hero-tag { margin-top: 24px; display: flex; gap: 12px; font-size: 12px; color: #999; flex-wrap: wrap; }
 .yang #home .hero-tag span { padding: 4px 12px; border: 1px solid #ddd; border-radius: 20px; }
 .yang #about .bio { font-size: 14px; line-height: 1.9; color: #444; max-width: 600px; margin-bottom: 24px; min-height: 80px; }
-.yang #about .honors-heading { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: #aaa; margin-top: 36px; margin-bottom: 16px; }
-.yang #about .honors-list { list-style: none; }
-.yang #about .honors-list li { padding: 8px 0; font-size: 13px; color: #555; display: flex; gap: 16px; align-items: baseline; border-bottom: 1px solid #f2f2f2; }
-.yang #about .honors-list li:last-child { border-bottom: none; }
-.yang #about .honors-list .award-name { flex: 1; }
-.yang #about .honors-list .award-year { font-size: 11px; color: #bbb; font-family: 'JetBrains Mono', monospace; white-space: nowrap; }
 .yang .timeline { list-style: none; }
-.yang .timeline li { padding: 14px 0; border-bottom: 1px solid #eee; font-size: 13px; color: #555; display: flex; gap: 20px; align-items: baseline; }
+.yang .timeline li { padding: 14px 0; border-bottom: 1px solid #eee; font-size: 13px; color: #555; display: flex; gap: 20px; align-items: baseline; flex-wrap: wrap; }
 .yang .timeline .yr { color: #aaa; min-width: 55px; font-family: 'JetBrains Mono', monospace; font-size: 12px; }
 .yang .timeline .desc { flex: 1; }
 .yang .timeline .detail { font-size: 12px; color: #999; }
+.yang .timeline .tl-sub { list-style: none; width: 100%; margin: 6px 0 0 75px; padding: 0; }
+.yang .timeline .tl-sub li { padding: 3px 0; font-size: 12px; color: #777; border-bottom: none; display: flex; gap: 12px; align-items: baseline; }
+.yang .timeline .tl-sub .tl-sub-year { font-size: 11px; color: #bbb; font-family: 'JetBrains Mono', monospace; white-space: nowrap; margin-left: auto; }
 .yang .direction { margin-bottom: 32px; }
 .yang .direction h3 { font-size: 16px; font-weight: 500; margin-bottom: 8px; }
 .yang .direction p { font-size: 14px; color: #555; line-height: 1.7; }
@@ -402,21 +399,25 @@
       <h2 data-en="About" data-zh="关于">About</h2>
       <p class="bio" data-en="Wu Hao, Party member. Enrolled at NJUPT in 2019 majoring in Communication Engineering, enlisted in 2020, returned in 2022, graduated with a B.S. in 2026, and will pursue a direct PhD in Information and Communication Engineering at NJUPT under Prof. Zhou Quan." data-zh="吴昊，中共党员，2019年入学南京邮电大学通信工程专业，2020年携笔从戎，2022年退役复学，2026年本科毕业，直博本校信息与通信工程专业，师从周全教授。">Wu Hao, Party member. Enrolled at NJUPT in 2019 majoring in Communication Engineering, enlisted in 2020, returned in 2022, graduated with a B.S. in 2026, and will pursue a direct PhD in Information and Communication Engineering at NJUPT under Prof. Zhou Quan.</p>
       <ul class="timeline">
-        <li><span class="yr">2022–2026</span><span class="desc" data-en="B.S. Communication Engineering · NJUPT" data-zh="就读于南京邮电大学通信与信息工程学院">B.S. Communication Engineering · NJUPT</span><span class="detail" data-en="Class monitor, military instructor" data-zh="班长，军训教官">Class monitor, military instructor</span></li>
-        <li><span class="yr">2020–2022</span><span class="desc" data-en="Military Service · PLA Eastern Theater Navy" data-zh="服役于中国人民解放军东部战区海军">Military Service · PLA Eastern Theater Navy</span><span class="detail" data-en="Outstanding Soldier, Commendation" data-zh="四有优秀士兵，嘉奖">Outstanding Soldier, Commendation</span></li>
+        <li><span class="yr">2022–2026</span><span class="desc" data-en="B.S. Communication Engineering · NJUPT" data-zh="就读于南京邮电大学通信与信息工程学院">B.S. Communication Engineering · NJUPT</span><span class="detail" data-en="Class monitor, military instructor" data-zh="班长，军训教官">Class monitor, military instructor</span>
+          <ul class="tl-sub">
+            <li><span class="tl-sub-name" data-en="National First-Class Scholarship" data-zh="国家一等奖学金">National First-Class Scholarship</span><span class="tl-sub-year">2024</span></li>
+            <li><span class="tl-sub-name" data-en="MCM/ICM — Meritorious Winner" data-zh="美国大学生数学建模竞赛M奖">MCM/ICM — Meritorious Winner</span><span class="tl-sub-year">2024</span></li>
+            <li><span class="tl-sub-name" data-en="Outstanding Student Leader" data-zh="优秀学生干部">Outstanding Student Leader</span><span class="tl-sub-year">2023</span></li>
+            <li><span class="tl-sub-name" data-en="Outstanding League Member" data-zh="优秀共青团员">Outstanding League Member</span><span class="tl-sub-year">2023</span></li>
+            <li><span class="tl-sub-name" data-en="Merit Student (三好学生)" data-zh="三好学生">Merit Student (三好学生)</span><span class="tl-sub-year">2023</span></li>
+            <li><span class="tl-sub-name" data-en="Outstanding Instructor (Military Training)" data-zh="优秀教官">Outstanding Instructor (Military Training)</span><span class="tl-sub-year">2023</span></li>
+            <li><span class="tl-sub-name" data-en="CUMCM Jiangsu Second Prize" data-zh="全国大学生数学建模江苏省二等奖">CUMCM Jiangsu Second Prize</span><span class="tl-sub-year">2023</span></li>
+            <li><span class="tl-sub-name" data-en="University Innovation Program (Completed)" data-zh="校级大创项目（结项）">University Innovation Program (Completed)</span><span class="tl-sub-year">2023–2024</span></li>
+          </ul>
+        </li>
+        <li><span class="yr">2020–2022</span><span class="desc" data-en="Military Service · PLA Eastern Theater Navy" data-zh="服役于中国人民解放军东部战区海军">Military Service · PLA Eastern Theater Navy</span><span class="detail" data-en="Outstanding Soldier, Commendation" data-zh="四有优秀士兵，嘉奖">Outstanding Soldier, Commendation</span>
+          <ul class="tl-sub">
+            <li><span class="tl-sub-name" data-en="Outstanding Soldier with Four Virtues" data-zh="四有优秀士兵">Outstanding Soldier with Four Virtues</span><span class="tl-sub-year">2021</span></li>
+            <li><span class="tl-sub-name" data-en="Commendation (嘉奖)" data-zh="嘉奖">Commendation (嘉奖)</span><span class="tl-sub-year">2021</span></li>
+          </ul>
+        </li>
         <li><span class="yr">2019–2020</span><span class="desc" data-en="Enrolled at NJUPT" data-zh="入学南京邮电大学通信与信息工程学院">Enrolled at NJUPT</span><span class="detail" data-en="Communication Engineering" data-zh="通信工程专业">Communication Engineering</span></li>
-      </ul>
-      <h3 class="honors-heading" data-en="Honors &amp; Awards" data-zh="荣誉与奖项">Honors &amp; Awards</h3>
-      <ul class="honors-list">
-        <li><span class="award-name" data-en="National First-Class Scholarship" data-zh="国家一等奖学金">National First-Class Scholarship</span><span class="award-year">2024</span></li>
-        <li><span class="award-name" data-en="MCM/ICM — Meritorious Winner" data-zh="美国大学生数学建模竞赛M奖">MCM/ICM — Meritorious Winner</span><span class="award-year">2024</span></li>
-        <li><span class="award-name" data-en="Outstanding Student Leader" data-zh="优秀学生干部">Outstanding Student Leader</span><span class="award-year">2023</span></li>
-        <li><span class="award-name" data-en="Outstanding Instructor (Military Training)" data-zh="优秀教官">Outstanding Instructor (Military Training)</span><span class="award-year">2023</span></li>
-        <li><span class="award-name" data-en="Outstanding League Member" data-zh="优秀共青团员">Outstanding League Member</span><span class="award-year">2023</span></li>
-        <li><span class="award-name" data-en="Merit Student (三好学生)" data-zh="三好学生">Merit Student (三好学生)</span><span class="award-year">2023</span></li>
-        <li><span class="award-name" data-en="CUMCM Jiangsu Second Prize" data-zh="全国大学生数学建模竞赛江苏省二等奖">CUMCM Jiangsu Second Prize</span><span class="award-year">2023</span></li>
-        <li><span class="award-name" data-en="University Innovation &amp; Entrepreneurship Program (Completed)" data-zh="校级大创项目（结项）">University Innovation &amp; Entrepreneurship Program (Completed)</span><span class="award-year">2023–2024</span></li>
-        <li><span class="award-name" data-en="Outstanding Soldier with Four Virtues" data-zh="四有优秀士兵">Outstanding Soldier with Four Virtues</span><span class="award-year">2021</span></li>
       </ul>
     </div>
     <!-- 研究 -->
